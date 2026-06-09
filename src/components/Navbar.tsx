@@ -35,13 +35,13 @@ export default function Navbar() {
           : "bg-white/50 backdrop-blur-md border-b border-transparent"
       }`}
     >
-      <div className="max-w-5xl mx-auto px-6 h-full flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
         <Link
           href="/"
           className="shrink-0 whitespace-nowrap font-extrabold text-lg tracking-tight text-slate-900 transition-colors hover:text-blue-600"
           aria-label={t.ui.home_aria_label}
         >
-          Tansel KILIÇ
+          {t.hero.name}
         </Link>
 
         <nav className="hidden md:flex items-center gap-5 lg:gap-8">

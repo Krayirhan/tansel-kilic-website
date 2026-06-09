@@ -1,8 +1,7 @@
 "use client";
 import { useLang } from "@/context/LangContext";
 import Reveal from "@/components/ui/Reveal";
-import SectionHeader from "@/components/ui/SectionHeader";
-import { Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
 import LinkedInIcon from "@/components/ui/LinkedInIcon";
@@ -31,26 +30,26 @@ const CONTACT_ITEMS = [
     iconBorder: "border-blue-200",
     iconClass: "text-blue-600",
     iconBoxClass: "bg-blue-50",
-    cardHoverClass: "hover:border-blue-300 hover:bg-blue-50/30 hover:translate-x-1.5",
+    cardHoverClass: "hover:border-blue-300 hover:bg-blue-50/40",
   },
   {
     Icon: Mail,
     labelKey: "email",
     subKey: "email_sub",
     href: `mailto:${EMAIL}`,
-    iconBorder: "border-emerald-200",
-    iconClass: "text-emerald-600",
-    iconBoxClass: "bg-emerald-50",
-    cardHoverClass: "hover:border-emerald-300 hover:bg-emerald-50/30 hover:translate-x-1.5",
+    iconBorder: "border-teal-200",
+    iconClass: "text-teal-700",
+    iconBoxClass: "bg-teal-50",
+    cardHoverClass: "hover:border-teal-300 hover:bg-teal-50/40",
   },
   {
     Icon: MapPin,
     labelKey: "location",
     subKey: "location_sub",
-    iconBorder: "border-violet-200",
-    iconClass: "text-violet-600",
-    iconBoxClass: "bg-violet-50",
-    cardHoverClass: "hover:border-violet-300 hover:bg-violet-50/30",
+    iconBorder: "border-amber-200",
+    iconClass: "text-amber-700",
+    iconBoxClass: "bg-amber-50",
+    cardHoverClass: "hover:border-amber-300 hover:bg-amber-50/40",
   },
 ] satisfies ContactItem[];
 
@@ -61,45 +60,66 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 md:py-24 bg-slate-50 border-t border-slate-200/80 px-6"
+      className="py-16 md:py-28 bg-white px-6"
     >
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-        
-        {/* Left Column */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-16 items-stretch">
         <Reveal duration={0.5}>
-          <SectionHeader
-            label={c.label}
-            title={c.title}
-            description={c.desc}
-            className="mb-8"
-            descriptionClassName="text-slate-500 leading-relaxed text-base mt-5"
-          />
+          <div className="h-full rounded-[2rem] bg-slate-950 p-7 md:p-9 text-white shadow-premium">
+            <div className="mb-8">
+              <span className="text-xs font-bold tracking-widest uppercase text-teal-300 block mb-2">
+                {c.label}
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                {c.title}
+              </h2>
+              <p className="text-slate-300 leading-relaxed text-base mt-5 max-w-xl">
+                {c.desc}
+              </p>
+            </div>
 
-          {/* Availability badge */}
-          <div className="inline-flex items-center gap-2.5 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-2.5 text-xs font-bold text-emerald-800">
-            <span className="relative flex w-2 h-2">
-              <span className="absolute inset-0 rounded-full bg-emerald-500 opacity-60 animate-ping" />
-              <span className="relative w-2 h-2 rounded-full bg-emerald-500 block" />
-            </span>
-            {c.avail_reply}
+            <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-xl px-4 py-2.5 text-xs font-bold text-white">
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inset-0 rounded-full bg-teal-300 opacity-60 animate-ping" />
+                <span className="relative w-2 h-2 rounded-full bg-teal-300 block" />
+              </span>
+              {c.avail_reply}
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-3 text-xs text-slate-300">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div className="text-2xl font-extrabold text-white">{c.signal_1_title}</div>
+                <div className="mt-1">{c.signal_1_sub}</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div className="text-2xl font-extrabold text-white">{c.signal_2_title}</div>
+                <div className="mt-1">{c.signal_2_sub}</div>
+              </div>
+            </div>
           </div>
         </Reveal>
 
-        {/* Right Column */}
-        <div className="flex flex-col gap-3.5">
+        <div className="flex flex-col justify-center gap-3.5">
           {CONTACT_ITEMS.map((item, i) => {
             const label = c[item.labelKey];
             const sub = c[item.subKey];
-            const cardClass = `flex items-center gap-4 bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-premium transition-all duration-300 ${item.cardHoverClass}`;
+            const cardClass = `group flex items-center gap-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-5 md:p-6 shadow-sm hover:shadow-premium hover:-translate-y-1 transition-all duration-300 ${item.cardHoverClass}`;
             const inner = (
               <>
                 <div
-                  className={`w-11 h-11 rounded-xl flex items-center justify-center border flex-shrink-0 ${item.iconBorder} ${item.iconBoxClass} ${item.iconClass}`}
+                  className={`w-12 h-12 rounded-2xl flex items-center justify-center border flex-shrink-0 ${item.iconBorder} ${item.iconBoxClass} ${item.iconClass}`}
                 >
                   <item.Icon size={18} />
                 </div>
-                <span className="font-bold text-sm text-slate-900">{label}</span>
-                <span className="ml-auto text-[11px] font-bold text-slate-400">{sub}</span>
+                <div className="min-w-0">
+                  <span className="block font-bold text-sm text-slate-900">{label}</span>
+                  <span className="block text-xs font-semibold text-slate-400 mt-1">{sub}</span>
+                </div>
+                {item.href ? (
+                  <ArrowUpRight
+                    size={16}
+                    className="ml-auto text-slate-300 transition-colors group-hover:text-slate-700"
+                  />
+                ) : null}
               </>
             );
 

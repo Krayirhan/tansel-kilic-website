@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { LangProvider } from "@/context/LangContext";
 import { LINKEDIN_URL, EMAIL, SITE_URL } from "@/lib/config";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter" });
+const sans = IBM_Plex_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+});
+
+const display = Newsreader({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+});
 
 const description =
   "Technology executive with 20+ years leading large-scale platforms, engineering organizations, and AI transformation initiatives across fintech, e-commerce, and digital ecosystems.";
@@ -67,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.variable}>
+      <body className={`${sans.variable} ${display.variable}`}>
         <LangProvider initialLocale="tr">{children}</LangProvider>
       </body>
     </html>

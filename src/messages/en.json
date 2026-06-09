@@ -8,12 +8,24 @@
     "contact": "Contact"
   },
   "hero": {
-    "subtitle": "20+ years building large-scale systems, growing engineering organizations, and delivering production-grade AI transformation.",
+    "name": "Tansel KILIÇ",
+    "headline": "AI, fintech and platform leadership for high-scale environments.",
+    "subtitle": "20+ years leading engineering organizations, cloud-native platforms, and production-grade AI transformation across fintech, e-commerce, and digital ecosystems.",
     "cta_primary": "Get in touch",
     "cta_secondary": "View experience",
-    "title_line": "Technology Leader & AI Executive",
+    "title_line": "Technology Executive",
     "card_location": "Istanbul, Turkey · Hybrid",
     "card_langs": "Turkish · English",
+    "proof_1": "20+ years across fintech, e-commerce and digital ecosystems",
+    "proof_2": "Led distributed engineering teams of 50+ members",
+    "proof_3": "AI and LLM initiatives delivered as production systems",
+    "focus_label": "Operating focus",
+    "focus_title": "Strategy to production",
+    "focus_1": "AI transformation",
+    "focus_2": "Fintech platforms",
+    "focus_3": "Engineering scale",
+    "card_experience": "Years of technology leadership",
+    "card_engineers": "Engineers led across distributed teams",
     "linkedin_label": "LinkedIn",
     "linkedin_aria_label": "LinkedIn profile",
     "email_label": "Email",
@@ -22,10 +34,18 @@
   "about": {
     "label": "About",
     "title": "Execution-focused technology executive",
+    "subtitle": "A technology leader operating at the intersection of business impact, engineering scale, and production-grade AI.",
+    "deck_label": "Executive profile",
+    "deck_title": "From strategy to systems that actually run.",
+    "deck_desc": "The profile is built around execution: aligning stakeholders, shaping use cases, leading engineering teams, and taking complex platforms from idea to production.",
     "p1": "I have 20+ years of experience leading large-scale platforms and engineering organizations across fintech, e-commerce, and digital ecosystems. I have built and led distributed engineering teams of 50+ members, delivering cloud-native, microservices-based architectures that support millions of users.",
     "p2": "In recent years, I have led AI and LLM transformation initiatives — not as experiments, but as production systems that improve decision-making, automate operations, and enhance customer experience.",
     "p3": "I work closely with business and executive stakeholders to identify where technology can drive measurable impact, and oversee the full lifecycle from use case discovery to rollout.",
-    "p4": "I combine deep technical expertise with a pragmatic, execution-focused approach to digital transformation."
+    "p4": "I combine deep technical expertise with a pragmatic, execution-focused approach to digital transformation.",
+    "principle_1": "Business-first AI and platform decisions",
+    "principle_2": "Engineering leadership across distributed teams",
+    "principle_3": "Cloud-native systems designed for scale",
+    "principle_4": "Pragmatic delivery from discovery to rollout"
   },
   "impact": {
     "label": "Impact",
@@ -43,6 +63,7 @@
     "label": "Responsible AI",
     "title": "Building AI the right way",
     "subtitle": "When deploying production-grade AI systems, I put accuracy, privacy, and human oversight at the center. Not experiments — business impact.",
+    "operating_label": "Operating principles",
     "project1_tag": "Ozan · 2024–2025",
     "project1_title": "Document Intelligence Platform",
     "project1_desc": "Local LLM-based system analyzing high-volume financial documents. On-premise architecture ensured data privacy compliance; manual review effort and operational overhead reduced measurably.",
@@ -59,6 +80,7 @@
   "education": {
     "label": "Education",
     "title": "Academic background",
+    "subtitle": "Formal education that connects analytics, management information systems, and software foundations.",
     "edu1_title": "Istanbul Technical University",
     "edu1_sub": "MSc, Big Data & Business Analytics",
     "edu1_date": "Aug 2024 — Ongoing",
@@ -72,11 +94,13 @@
   "experience": {
     "label": "Career",
     "title": "Where I've worked",
+    "subtitle": "A leadership track across fintech, media, e-commerce, consulting, and platform organizations, presented by impact and operating context rather than as a plain CV timeline.",
     "earlier": "Earlier roles"
   },
   "expertise": {
     "label": "Expertise",
-    "title": "Areas of expertise",
+    "title": "What this profile is built for",
+    "subtitle": "A focused operating range across AI transformation, regulated fintech environments, cloud-native platforms, and engineering leadership.",
     "ai_title": "AI & LLM Transformation",
     "ai_desc": "Production-grade LLM systems — document intelligence, fraud detection, decision automation. Not experiments — real systems with measurable impact.",
     "fintech_title": "Fintech & Payment Systems",
@@ -100,6 +124,10 @@
     "email_sub": "Send a message",
     "location": "Istanbul, Turkey",
     "location_sub": "Open to remote",
+    "signal_1_title": "AI",
+    "signal_1_sub": "Transformation",
+    "signal_2_title": "Fintech",
+    "signal_2_sub": "Platforms",
     "avail_reply": "Typical response time: within 24 hours"
   },
   "ui": {

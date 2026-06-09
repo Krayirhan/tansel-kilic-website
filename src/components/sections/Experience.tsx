@@ -1,18 +1,19 @@
 "use client";
+
 import { useLang } from "@/context/LangContext";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { experiences, currentDuration } from "@/lib/data";
+import { currentDuration, experiences } from "@/lib/data";
 
 const FULL_COUNT = 6;
 
 const PALETTE = [
-  { dot: "#2563eb", tagBg: "#eff6ff", tagText: "#1d4ed8", tagBorder: "#bfdbfe" },
-  { dot: "#7c3aed", tagBg: "#f5f3ff", tagText: "#6d28d9", tagBorder: "#ddd6fe" },
-  { dot: "#0891b2", tagBg: "#ecfeff", tagText: "#0e7490", tagBorder: "#a5f3fc" },
-  { dot: "#059669", tagBg: "#ecfdf5", tagText: "#047857", tagBorder: "#a7f3d0" },
-  { dot: "#d97706", tagBg: "#fffbeb", tagText: "#b45309", tagBorder: "#fde68a" },
-  { dot: "#dc2626", tagBg: "#fef2f2", tagText: "#b91c1c", tagBorder: "#fecaca" },
+  { dot: "#1e3a8a", tagBg: "#eff6ff", tagText: "#1e3a8a", tagBorder: "#bfdbfe" },
+  { dot: "#0f766e", tagBg: "#f0fdfa", tagText: "#0f766e", tagBorder: "#99f6e4" },
+  { dot: "#0369a1", tagBg: "#f0f9ff", tagText: "#0369a1", tagBorder: "#bae6fd" },
+  { dot: "#334155", tagBg: "#f8fafc", tagText: "#334155", tagBorder: "#cbd5e1" },
+  { dot: "#b45309", tagBg: "#fffbeb", tagText: "#b45309", tagBorder: "#fde68a" },
+  { dot: "#1d4ed8", tagBg: "#eff6ff", tagText: "#1d4ed8", tagBorder: "#bfdbfe" },
 ];
 
 export default function Experience() {
@@ -20,23 +21,23 @@ export default function Experience() {
   const isTr = locale === "tr";
   const e = t.experience;
 
-  const full    = experiences.slice(0, FULL_COUNT);
+  const full = experiences.slice(0, FULL_COUNT);
   const earlier = experiences.slice(FULL_COUNT);
 
   return (
-    <section id="experience" className="py-20 md:py-24 bg-white px-6">
-      <div className="max-w-5xl mx-auto">
-        
-        {/* Section Heading */}
+    <section id="experience" className="py-16 md:py-28 bg-slate-50 border-y border-slate-200/80 px-6">
+      <div className="max-w-6xl mx-auto">
         <Reveal duration={0.5} className="mb-12">
-          <SectionHeader label={e.label} title={e.title} className="mb-0" />
+          <SectionHeader
+            label={e.label}
+            title={e.title}
+            description={e.subtitle}
+            className="mb-0"
+            descriptionClassName="text-slate-500 leading-relaxed text-base max-w-2xl mt-4"
+          />
         </Reveal>
 
-        {/* Timeline content */}
-        <div className="relative pl-8 md:pl-10">
-          {/* Vertical line indicator */}
-          <div className="absolute left-1.5 top-4 bottom-0 w-[1px] bg-slate-200" />
-
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {full.map((exp, i) => {
             const c = PALETTE[i % PALETTE.length];
             return (
@@ -44,53 +45,39 @@ export default function Experience() {
                 key={exp.company + exp.date_en}
                 duration={0.4}
                 delay={Math.min(i * 0.05, 0.3)}
-                className="relative pb-10 last:pb-0"
+                className="h-full"
               >
-                {/* Timeline node dot */}
-                <div
-                  aria-hidden="true"
-                  className="absolute -left-[2.35rem] top-5 w-3 h-3 rounded-full z-10 border-2"
-                  style={{
-                    backgroundColor: exp.current ? c.dot : "#ffffff",
-                    borderColor: c.dot,
-                    boxShadow: exp.current ? `0 0 0 3px ${c.tagBg}` : "none"
-                  }}
-                />
-
-                {/* Card Container */}
-                <div
-                  className="bg-white border border-slate-200/90 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-premium hover:border-slate-300"
-                  style={{ borderLeftWidth: "4px", borderLeftColor: c.dot }}
+                <article
+                  className="h-full bg-white border border-slate-200/90 rounded-3xl p-6 md:p-7 transition-all duration-300 hover:shadow-premium-hover hover:-translate-y-1"
+                  style={{ borderTopWidth: "4px", borderTopColor: c.dot }}
                 >
-                  {/* Header info */}
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-5">
                     <div>
-                      <h3 className="text-lg font-bold text-slate-900 tracking-tight leading-snug">
-                        {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
-                      </h3>
                       <div
-                        className="text-sm font-bold mt-1"
+                        className="text-xs font-bold tracking-[0.18em] uppercase mb-2"
                         style={{ color: c.dot }}
                       >
                         {exp.company}
                       </div>
+                      <h3 className="text-lg md:text-xl font-bold text-slate-950 tracking-tight leading-snug">
+                        {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
+                      </h3>
                     </div>
-                    <div className="text-xs font-semibold text-slate-400 sm:pt-1 whitespace-nowrap">
+                    <div className="rounded-full bg-slate-50 border border-slate-200 px-3 py-1 text-[11px] font-bold text-slate-500 whitespace-nowrap">
                       {isTr ? exp.date_tr : exp.date_en}
-                      {exp.current && exp.start_date && (
-                        <span className="ml-1 text-slate-300">
-                          · {currentDuration(exp.start_date, isTr ? "tr" : "en")}
-                        </span>
-                      )}
                     </div>
                   </div>
 
-                  {/* Body description */}
-                  <p className="text-sm text-slate-500 leading-relaxed mb-5">
+                  {exp.current && exp.start_date ? (
+                    <div className="inline-flex items-center rounded-full bg-teal-50 border border-teal-100 px-3 py-1 text-[11px] font-bold text-teal-700 mb-4">
+                      {currentDuration(exp.start_date, isTr ? "tr" : "en")}
+                    </div>
+                  ) : null}
+
+                  <p className="text-sm text-slate-500 leading-relaxed mb-6">
                     {isTr ? exp.desc_tr : exp.desc_en}
                   </p>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-1.5">
                     {(isTr ? exp.tags_tr : exp.tags).map((tag) => (
                       <span
@@ -99,41 +86,34 @@ export default function Experience() {
                         style={{
                           backgroundColor: c.tagBg,
                           color: c.tagText,
-                          borderColor: c.tagBorder
+                          borderColor: c.tagBorder,
                         }}
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                </div>
+                </article>
               </Reveal>
             );
           })}
         </div>
 
-        {/* Earlier Experiences compact list */}
-        {earlier.length > 0 && (
-          <div className="mt-14">
-            <h3 className="text-[11px] font-bold tracking-widest uppercase text-slate-400 mb-6 pl-8 md:pl-10">
+        {earlier.length > 0 ? (
+          <div className="mt-12 rounded-3xl bg-white border border-slate-200 p-5 md:p-6">
+            <h3 className="text-[11px] font-bold tracking-widest uppercase text-slate-400 mb-5">
               {e.earlier}
             </h3>
-            
-            <div className="relative pl-8 md:pl-10">
-              {/* Compact timeline line */}
-              <div className="absolute left-1.5 top-0 bottom-4 w-[1px] bg-slate-200" />
-              
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
               {earlier.map((exp, i) => (
                 <Reveal
                   key={exp.company + exp.date_en}
                   duration={0.3}
                   delay={Math.min(i * 0.03, 0.3)}
-                  className="relative pb-6 last:pb-0"
+                  className="border-b border-slate-200 py-4"
                 >
-                  {/* Compact list bullet */}
-                  <div aria-hidden="true" className="absolute -left-[2.18rem] top-2.5 w-2 h-2 rounded-full bg-white border border-slate-300" />
-                  
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-slate-200 pb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                     <div className="flex flex-wrap items-baseline gap-2">
                       <span className="text-sm font-bold text-slate-900">
                         {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
@@ -150,8 +130,7 @@ export default function Experience() {
               ))}
             </div>
           </div>
-        )}
-
+        ) : null}
       </div>
     </section>
   );

@@ -8,12 +8,24 @@
     "contact": "İletişim"
   },
   "hero": {
-    "subtitle": "20+ yıllık deneyimle büyük ölçekli sistemler inşa ediyor, mühendislik organizasyonlarını büyütüyor ve üretim kalitesinde AI dönüşümleri gerçekleştiriyorum.",
+    "name": "Tansel KILIÇ",
+    "headline": "Yüksek ölçekli ortamlarda AI, fintech ve platform liderliği.",
+    "subtitle": "Fintech, e-ticaret ve dijital ekosistemlerde 20+ yıllık deneyimle mühendislik organizasyonları, cloud-native platformlar ve üretim kalitesinde AI dönüşümleri yönetiyorum.",
     "cta_primary": "İletişime geç",
     "cta_secondary": "Deneyimi gör",
-    "title_line": "Teknoloji Lideri & AI Yöneticisi",
+    "title_line": "Teknoloji Yöneticisi",
     "card_location": "İstanbul, Türkiye · Hibrit",
     "card_langs": "Türkçe · İngilizce",
+    "proof_1": "Fintech, e-ticaret ve dijital ekosistemlerde 20+ yıl",
+    "proof_2": "50+ kişilik dağıtık mühendislik ekipleri yönetti",
+    "proof_3": "AI ve LLM girişimlerini üretim sistemleri olarak hayata geçirdi",
+    "focus_label": "Odak alanı",
+    "focus_title": "Stratejiden üretime",
+    "focus_1": "AI dönüşümü",
+    "focus_2": "Fintech platformları",
+    "focus_3": "Mühendislik ölçeği",
+    "card_experience": "Yıl teknoloji liderliği",
+    "card_engineers": "Dağıtık ekiplerde yönetilen mühendis",
     "linkedin_label": "LinkedIn",
     "linkedin_aria_label": "LinkedIn profili",
     "email_label": "E-posta",
@@ -22,10 +34,18 @@
   "about": {
     "label": "Hakkımda",
     "title": "İcraat odaklı teknoloji yöneticisi",
+    "subtitle": "İş etkisi, mühendislik ölçeği ve üretim kalitesinde AI kesişiminde çalışan bir teknoloji lideri.",
+    "deck_label": "Yönetici profili",
+    "deck_title": "Stratejiden gerçekten çalışan sistemlere.",
+    "deck_desc": "Bu profil icraat üzerine kurulu: paydaşları hizalamak, kullanım senaryolarını şekillendirmek, mühendislik ekiplerini yönetmek ve karmaşık platformları fikirden üretime taşımak.",
     "p1": "Fintech, e-ticaret ve dijital ekosistemlerde büyük ölçekli platformları ve mühendislik organizasyonlarını 20 yılı aşkın bir süredir yönetiyorum. 50'nin üzerinde mühendisten oluşan dağıtık mühendislik ekiplerini yöneterek milyonlarca kullanıcıyı destekleyen cloud-native, mikroservis tabanlı mimariler hayata geçirdim.",
     "p2": "Son yıllarda AI ve LLM dönüşüm girişimlerini deneysel projeler olarak değil; karar almayı iyileştiren, operasyonları otomatikleştiren ve müşteri deneyimini güçlendiren üretim sistemleri olarak hayata geçirdim.",
     "p3": "İş ve yönetim paydaşlarıyla teknolojinin ölçülebilir etki yaratacağı alanları birlikte belirliyorum; kullanım senaryosu keşfinden devreye almaya kadar tüm süreci yönetiyorum.",
-    "p4": "Derin teknik bilgiyi, dijital dönüşümde sonuç odaklı pragmatik bir yönetim anlayışıyla birleştiriyorum."
+    "p4": "Derin teknik bilgiyi, dijital dönüşümde sonuç odaklı pragmatik bir yönetim anlayışıyla birleştiriyorum.",
+    "principle_1": "İş öncelikli AI ve platform kararları",
+    "principle_2": "Dağıtık ekiplerde mühendislik liderliği",
+    "principle_3": "Ölçek için tasarlanmış cloud-native sistemler",
+    "principle_4": "Keşiften devreye almaya pragmatik teslimat"
   },
   "impact": {
     "label": "Etki",
@@ -43,6 +63,7 @@
     "label": "Sorumlu AI",
     "title": "AI'ı doğru inşa etmek",
     "subtitle": "Üretim kalitesinde AI sistemleri kurarken doğruluk, gizlilik ve insan denetimini merkeze alıyorum. Deney değil, iş etkisi.",
+    "operating_label": "Çalışma prensipleri",
     "project1_tag": "Ozan · 2024–2025",
     "project1_title": "Belge Zekası Platformu",
     "project1_desc": "Yüksek hacimli finansal belgeleri analiz eden yerel LLM tabanlı sistem. On-premise mimarisi ile veri gizliliği güvence altına alındı; manuel inceleme süresi ve operasyonel yük ölçülebilir biçimde azaltıldı.",
@@ -59,6 +80,7 @@
   "education": {
     "label": "Eğitim",
     "title": "Akademik geçmiş",
+    "subtitle": "Analitik, yönetim bilişim sistemleri ve yazılım temellerini birleştiren akademik zemin.",
     "edu1_title": "İstanbul Teknik Üniversitesi",
     "edu1_sub": "Büyük Veri & İş Analitiği, YL",
     "edu1_date": "Ağu 2024 — Devam ediyor",
@@ -72,11 +94,13 @@
   "experience": {
     "label": "Kariyer",
     "title": "Çalıştığım yerler",
+    "subtitle": "Fintech, medya, e-ticaret, danışmanlık ve platform organizasyonlarında liderlik çizgisi; düz CV zaman çizelgesi yerine etki ve operasyon bağlamı üzerinden sunulur.",
     "earlier": "Önceki roller"
   },
   "expertise": {
     "label": "Uzmanlık",
-    "title": "Uzmanlık alanlarım",
+    "title": "Bu profilin inşa edildiği alanlar",
+    "subtitle": "AI dönüşümü, regüle fintech ortamları, cloud-native platformlar ve mühendislik liderliği etrafında net bir çalışma alanı.",
     "ai_title": "AI & LLM Dönüşümü",
     "ai_desc": "Üretim kalitesinde LLM sistemleri — belge zekası, dolandırıcılık tespiti, karar otomasyonu. Deney değil, ölçülebilir etki yaratan gerçek sistemler.",
     "fintech_title": "Fintech & Ödeme Sistemleri",
@@ -100,6 +124,10 @@
     "email_sub": "Mesaj gönder",
     "location": "İstanbul, Türkiye",
     "location_sub": "Uzaktan çalışmaya açık",
+    "signal_1_title": "AI",
+    "signal_1_sub": "Dönüşüm",
+    "signal_2_title": "Fintech",
+    "signal_2_sub": "Platformlar",
     "avail_reply": "Yanıt süresi: 24 saat içinde"
   },
   "ui": {

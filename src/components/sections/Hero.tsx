@@ -1,14 +1,16 @@
 "use client";
 
-import { MapPin, Globe, Mail } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Globe, Mail, MapPin } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
 import { useLang } from "@/context/LangContext";
 import LinkedInIcon from "@/components/ui/LinkedInIcon";
-import { LINKEDIN_URL, EMAIL } from "@/lib/config";
+import { EMAIL, LINKEDIN_URL } from "@/lib/config";
 import type { Messages } from "@/lib/i18n";
 
 type HeroCopyKey = keyof Messages["hero"];
+type HeroProofKey = "proof_1" | "proof_2" | "proof_3";
+type HeroFocusKey = "focus_1" | "focus_2" | "focus_3";
 
 type HeroSocialLink = {
   href: string;
@@ -32,6 +34,9 @@ const HERO_SOCIAL_LINKS = [
   },
 ] satisfies HeroSocialLink[];
 
+const HERO_PROOFS = ["proof_1", "proof_2", "proof_3"] satisfies HeroProofKey[];
+const HERO_FOCUS = ["focus_1", "focus_2", "focus_3"] satisfies HeroFocusKey[];
+
 export default function Hero() {
   const { t } = useLang();
   const h = t.hero;
@@ -39,37 +44,59 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="pt-32 pb-20 md:pt-40 md:pb-28 flex items-center bg-gradient-to-b from-slate-50/50 via-white to-white px-6"
+      className="executive-shell relative overflow-hidden pt-24 pb-12 md:pt-36 md:pb-24 px-6"
     >
-      <div className="max-w-3xl mx-auto w-full">
-        <div>
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold text-blue-600 tracking-wider uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-300/70 to-transparent" />
+
+      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.05fr_0.75fr] gap-10 lg:gap-16 items-center">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/80 border border-slate-200 text-[11px] font-bold text-slate-600 tracking-[0.22em] uppercase shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal-700" />
             {h.title_line}
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-[0.95] mb-6">
-            <span className="block">Tansel</span>
-            <span className="block text-blue-600">KILIÇ</span>
+          <div className="text-sm font-bold text-blue-900 mb-4 tracking-wide">
+            {h.name}
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-slate-950 leading-[0.94] mb-6">
+            {h.headline}
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-500 leading-relaxed max-w-xl mb-8">
+          <p className="text-base sm:text-xl text-slate-600 leading-relaxed max-w-2xl mb-8">
             {h.subtitle}
           </p>
 
           <div className="flex flex-wrap gap-3 mb-8">
             <a
               href="#contact"
-              className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold shadow-sm shadow-blue-600/10 hover:shadow-md hover:shadow-blue-600/20 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-950 hover:bg-slate-950 text-white rounded-xl text-sm font-bold shadow-sm shadow-blue-950/10 hover:shadow-md hover:shadow-blue-950/20 transition-all duration-200"
             >
-              {h.cta_primary}
+              {h.cta_primary} <ArrowUpRight size={15} aria-hidden="true" />
             </a>
             <a
               href="#experience"
-              className="px-6 py-3.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-xl text-sm font-semibold transition-all duration-200"
+              className="px-6 py-3.5 bg-white/85 hover:bg-white border border-slate-200 text-slate-700 rounded-xl text-sm font-semibold transition-all duration-200"
             >
               {h.cta_secondary}
             </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+            {HERO_PROOFS.map((key) => (
+              <div key={key} className="signal-card rounded-2xl px-4 py-3">
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle2
+                    size={16}
+                    className="text-teal-700 mt-0.5 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="text-sm font-semibold leading-snug text-slate-800">
+                    {h[key]}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -79,7 +106,7 @@ export default function Hero() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-xs font-semibold text-slate-500 rounded-lg hover:text-blue-600 hover:border-blue-200 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-xs font-semibold text-slate-500 rounded-lg hover:text-blue-900 hover:border-blue-200 transition-all duration-200"
                 aria-label={h[ariaLabelKey]}
               >
                 <span aria-hidden="true">
@@ -101,6 +128,51 @@ export default function Hero() {
             </div>
           </div>
         </div>
+
+        <aside className="signal-card hidden lg:block rounded-[2rem] p-6 md:p-7 relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-blue-950 via-teal-700 to-amber-700" />
+
+          <div className="flex items-start justify-between gap-6 mb-8">
+            <div>
+              <div className="text-xs font-bold tracking-[0.24em] uppercase text-slate-400 mb-2">
+                {h.focus_label}
+              </div>
+              <div className="text-2xl font-semibold text-slate-950 leading-tight">
+                {h.focus_title}
+              </div>
+            </div>
+            <div className="w-12 h-12 rounded-2xl bg-blue-950 text-white flex items-center justify-center shadow-sm">
+              <Globe size={21} aria-hidden="true" />
+            </div>
+          </div>
+
+          <div className="space-y-3 mb-8">
+            {HERO_FOCUS.map((key) => (
+              <div
+                key={key}
+                className="flex items-center justify-between gap-5 rounded-2xl bg-slate-50 border border-slate-200/80 px-4 py-3"
+              >
+                <span className="text-sm font-semibold text-slate-700">{h[key]}</span>
+                <span className="w-2 h-2 rounded-full bg-teal-700 flex-shrink-0" />
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="rounded-2xl bg-blue-950 text-white p-4">
+              <div className="text-3xl font-bold leading-none">20+</div>
+              <div className="text-[11px] font-semibold text-blue-100 mt-2 leading-snug">
+                {h.card_experience}
+              </div>
+            </div>
+            <div className="rounded-2xl bg-teal-700 text-white p-4">
+              <div className="text-3xl font-bold leading-none">50+</div>
+              <div className="text-[11px] font-semibold text-teal-50 mt-2 leading-snug">
+                {h.card_engineers}
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
   );
