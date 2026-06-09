@@ -2,6 +2,7 @@
   "name": "tansel-kilic-website",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.28.2",
   "engines": {
     "node": ">=18.17.0"
   },

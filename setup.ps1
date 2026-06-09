@@ -17,29 +17,29 @@ function Ensure-Command($name) {
 
 Step "Checking environment"
 Ensure-Command "node"
-Ensure-Command "npm"
+Ensure-Command "pnpm"
 
 $nodeVersion = node -v
-$npmVersion = npm -v
+$pnpmVersion = pnpm -v
 
 Write-Host "Node.js: $nodeVersion"
-Write-Host "npm: $npmVersion"
+Write-Host "pnpm: $pnpmVersion"
 
 Step "Installing dependencies"
-npm install
+pnpm install
 
 Step "Running lint"
-npm run lint
+pnpm lint
 
 Step "Running production build"
-npm run build
+pnpm build
 
 if ($Dev) {
   Step "Starting development server"
-  npm run dev
+  pnpm dev
   exit $LASTEXITCODE
 }
 
 Write-Host ""
 Write-Host "Setup completed successfully." -ForegroundColor Green
-Write-Host "Use 'npm run dev' to start the local server." -ForegroundColor Green
+Write-Host "Use 'pnpm dev' to start the local server." -ForegroundColor Green

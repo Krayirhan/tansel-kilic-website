@@ -13,8 +13,8 @@ Executive personal website for Tansel KILIC.
 ## Development
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -30,7 +30,7 @@ setup.bat
 Or:
 
 ```bash
-npm run setup
+pnpm setup
 ```
 
 This will:
@@ -42,13 +42,13 @@ This will:
 To install everything and immediately start the local server:
 
 ```bash
-npm run setup:dev
+pnpm setup:dev
 ```
 
 ## Production
 
 ```bash
-npm run build
+pnpm build
 ```
 
 This project is configured for static export and can be deployed from GitHub to Cloudflare Pages.
