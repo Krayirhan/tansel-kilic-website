@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "expertise": "Expertise",
+    "contact": "Contact"
+  },
+  "hero": {
+    "subtitle": "I build large-scale systems, lead engineering organizations, and drive AI transformation that delivers real business impact.",
+    "cta_primary": "Get in touch",
+    "cta_secondary": "View experience",
+    "title_line": "Technology Leader & AI Executive",
+    "stat_years_label": "Years of experience",
+    "stat_engineers_label": "Engineers led",
+    "stat_companies_label": "Companies impacted",
+    "photo_note": "Photo coming soon",
+    "card_location": "Istanbul, Turkey · Hybrid",
+    "card_langs": "Turkish · English"
+  },
+  "about": {
+    "label": "About",
+    "title": "Execution-focused technology executive",
+    "p1": "I have 20+ years of experience leading large-scale platforms and engineering organizations across fintech, e-commerce, and digital ecosystems. I have built and led distributed engineering teams of 50+ members, delivering cloud-native, microservices-based architectures that support millions of users.",
+    "p2": "In recent years, I have led AI and LLM transformation initiatives — not as experiments, but as production systems that improve decision-making, automate operations, and enhance customer experience.",
+    "p3": "I work closely with business and executive stakeholders to identify where technology can drive measurable impact, and oversee the full lifecycle from use case discovery to rollout.",
+    "p4": "I combine deep technical expertise with a pragmatic, execution-focused approach to digital transformation.",
+    "edu1_title": "Istanbul Technical University",
+    "edu1_sub": "MSc, Big Data & Business Analytics",
+    "edu1_date": "Aug 2024 — Ongoing",
+    "edu2_title": "Ahmet Yesevi University",
+    "edu2_sub": "Management Information Systems",
+    "edu2_date": "2005 — 2009",
+    "edu3_title": "Ondokuz Mayıs University",
+    "edu3_sub": "Computer Programming, Associate's Degree",
+    "edu3_date": "1999 — 2001"
+  },
+  "education": {
+    "label": "Education"
+  },
+  "experience": {
+    "label": "Career",
+    "title": "Where I've worked",
+    "earlier": "Earlier roles"
+  },
+  "expertise": {
+    "label": "Expertise",
+    "title": "Areas of expertise",
+    "ai_title": "AI & LLM Transformation",
+    "ai_desc": "Production-grade LLM systems — document intelligence, fraud detection, decision automation. Not experiments — real systems with measurable impact.",
+    "fintech_title": "Fintech & Payment Systems",
+    "fintech_desc": "POS, Virtual POS, digital wallets, AML systems, and financial compliance. Deep hands-on experience at CTO level.",
+    "cloud_title": "Cloud-Native Architecture",
+    "cloud_desc": "Microservices at scale on Azure and GCP. 100+ services deployed, supporting millions of concurrent users.",
+    "security_title": "Security & Cryptography",
+    "security_desc": "HSM integrations (Thales, SafeNet), mTLS, PKI, blockchain custody. Enterprise-grade security architecture.",
+    "leadership_title": "Engineering Leadership",
+    "leadership_desc": "Growing teams 3x, managing 50+ engineers across BE, FE, QA, DevOps. Agile at scale — Scrum, Kanban, OKRs.",
+    "digital_title": "Digital Transformation",
+    "digital_desc": "E-commerce, media, betting, hospitality — turning legacy systems into modern, scalable digital platforms."
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Contact",
+    "desc": "If you want to talk about AI transformation, fintech, or high-scale platform engineering, send a message.",
+    "linkedin": "LinkedIn",
+    "linkedin_sub": "tanselkilic",
+    "email": "Email",
+    "email_sub": "Send a message",
+    "location": "Istanbul, Turkey",
+    "location_sub": "Open to remote",
+    "avail_reply": "Typical response time: within 24 hours"
+  },
+  "footer": "© 2026 Tansel KILIÇ · Technology Leader & AI Executive"
+}

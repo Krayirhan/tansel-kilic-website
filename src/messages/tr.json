@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "about": "Hakkımda",
+    "experience": "Deneyim",
+    "expertise": "Uzmanlık",
+    "contact": "İletişim"
+  },
+  "hero": {
+    "subtitle": "Büyük ölçekli sistemler inşa ediyorum, mühendislik organizasyonlarını yönetiyorum ve gerçek iş etkisi yaratan AI dönüşümleri gerçekleştiriyorum.",
+    "cta_primary": "İletişime geç",
+    "cta_secondary": "Deneyimi gör",
+    "title_line": "Teknoloji Lideri & AI Yöneticisi",
+    "stat_years_label": "Yıl deneyim",
+    "stat_engineers_label": "Mühendis yönetimi",
+    "stat_companies_label": "Şirkette etki",
+    "photo_note": "Fotoğraf yakında",
+    "card_location": "İstanbul, Türkiye · Hibrit",
+    "card_langs": "Türkçe · İngilizce"
+  },
+  "about": {
+    "label": "Hakkımda",
+    "title": "İcraat odaklı teknoloji yöneticisi",
+    "p1": "Fintech, e-ticaret ve dijital ekosistemlerde büyük ölçekli platformları ve mühendislik organizasyonlarını 20 yılı aşkın bir süredir yönetiyorum. 50'nin üzerinde mühendisten oluşan dağıtık mühendislik ekiplerini yöneterek milyonlarca kullanıcıyı destekleyen cloud-native, mikroservis tabanlı mimariler hayata geçirdim.",
+    "p2": "Son yıllarda AI ve LLM dönüşüm girişimlerini deneysel projeler olarak değil; karar almayı iyileştiren, operasyonları otomatikleştiren ve müşteri deneyimini güçlendiren üretim sistemleri olarak hayata geçirdim.",
+    "p3": "İş ve yönetim paydaşlarıyla teknolojinin ölçülebilir etki yaratacağı alanları birlikte belirliyorum; kullanım senaryosu keşfinden devreye almaya kadar tüm süreci yönetiyorum.",
+    "p4": "Derin teknik bilgiyi, dijital dönüşümde sonuç odaklı pragmatik bir yönetim anlayışıyla birleştiriyorum.",
+    "edu1_title": "İstanbul Teknik Üniversitesi",
+    "edu1_sub": "Büyük Veri & İş Analitiği, YL",
+    "edu1_date": "Ağu 2024 — Devam ediyor",
+    "edu2_title": "Ahmet Yesevi Üniversitesi",
+    "edu2_sub": "Yönetim Bilişim Sistemleri",
+    "edu2_date": "2005 — 2009",
+    "edu3_title": "Ondokuz Mayıs Üniversitesi",
+    "edu3_sub": "Bilgisayar Programcılığı, Ön Lisans",
+    "edu3_date": "1999 — 2001"
+  },
+  "education": {
+    "label": "Eğitim"
+  },
+  "experience": {
+    "label": "Kariyer",
+    "title": "Çalıştığım yerler",
+    "earlier": "Önceki roller"
+  },
+  "expertise": {
+    "label": "Uzmanlık",
+    "title": "Uzmanlık alanlarım",
+    "ai_title": "AI & LLM Dönüşümü",
+    "ai_desc": "Üretim kalitesinde LLM sistemleri — belge zekası, dolandırıcılık tespiti, karar otomasyonu. Deney değil, ölçülebilir etki yaratan gerçek sistemler.",
+    "fintech_title": "Fintech & Ödeme Sistemleri",
+    "fintech_desc": "POS, Sanal POS, dijital cüzdan, AML sistemleri ve finansal uyumluluk. CTO seviyesinde derin pratik deneyim.",
+    "cloud_title": "Cloud-Native Mimari",
+    "cloud_desc": "Azure ve GCP üzerinde ölçekli mikroservisler. 100+ servis, milyonlarca eş zamanlı kullanıcı desteği.",
+    "security_title": "Güvenlik & Kriptografi",
+    "security_desc": "HSM entegrasyonları (Thales, SafeNet), mTLS, PKI, blockchain varlık saklama. Kurumsal güvenlik mimarisi.",
+    "leadership_title": "Mühendislik Liderliği",
+    "leadership_desc": "Ekipleri 3x büyütme, 50+ mühendis yönetimi. Ölçekli Agile — Scrum, Kanban, OKR.",
+    "digital_title": "Dijital Dönüşüm",
+    "digital_desc": "E-ticaret, medya, bahis, konaklama — eski sistemleri modern, ölçeklenebilir dijital platformlara dönüştürme."
+  },
+  "contact": {
+    "label": "İletişim",
+    "title": "İletişim",
+    "desc": "AI dönüşümü, fintech veya yüksek ölçekli platform mühendisliği üzerine konuşmak isterseniz yazabilirsiniz.",
+    "linkedin": "LinkedIn",
+    "linkedin_sub": "tanselkilic",
+    "email": "E-posta",
+    "email_sub": "Mesaj gönder",
+    "location": "İstanbul, Türkiye",
+    "location_sub": "Uzaktan çalışmaya açık",
+    "avail_reply": "Yanıt süresi: 24 saat içinde"
+  },
+  "footer": "© 2026 Tansel KILIÇ · Teknoloji Lideri & AI Yöneticisi"
+}
