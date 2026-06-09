@@ -3,15 +3,21 @@
     "about": "Hakkımda",
     "experience": "Deneyim",
     "expertise": "Uzmanlık",
+    "education": "Eğitim",
+    "responsible_ai": "Sorumlu AI",
     "contact": "İletişim"
   },
   "hero": {
-    "subtitle": "Büyük ölçekli sistemler inşa ediyorum, mühendislik organizasyonlarını yönetiyorum ve gerçek iş etkisi yaratan AI dönüşümleri gerçekleştiriyorum.",
+    "subtitle": "20+ yıllık deneyimle büyük ölçekli sistemler inşa ediyor, mühendislik organizasyonlarını büyütüyor ve üretim kalitesinde AI dönüşümleri gerçekleştiriyorum.",
     "cta_primary": "İletişime geç",
     "cta_secondary": "Deneyimi gör",
     "title_line": "Teknoloji Lideri & AI Yöneticisi",
     "card_location": "İstanbul, Türkiye · Hibrit",
-    "card_langs": "Türkçe · İngilizce"
+    "card_langs": "Türkçe · İngilizce",
+    "linkedin_label": "LinkedIn",
+    "linkedin_aria_label": "LinkedIn profili",
+    "email_label": "E-posta",
+    "email_aria_label": "E-posta adresi"
   },
   "about": {
     "label": "Hakkımda",
@@ -86,8 +92,8 @@
   },
   "contact": {
     "label": "İletişim",
-    "title": "İletişim",
-    "desc": "AI dönüşümü, fintech veya yüksek ölçekli platform mühendisliği üzerine konuşmak isterseniz yazabilirsiniz.",
+    "title": "Konuşalım",
+    "desc": "AI dönüşümü, fintech veya yüksek ölçekli platform mühendisliği üzerine çalışıyorsanız doğru yerdesiniz.",
     "linkedin": "LinkedIn",
     "linkedin_sub": "tanselkilic",
     "email": "E-posta",
@@ -96,5 +102,15 @@
     "location_sub": "Uzaktan çalışmaya açık",
     "avail_reply": "Yanıt süresi: 24 saat içinde"
   },
-  "footer": "© 2026 Tansel KILIÇ · Teknoloji Lideri & AI Yöneticisi"
+  "ui": {
+    "home_aria_label": "Tansel KILIÇ anasayfa",
+    "language_group_label": "Dil",
+    "switch_language_to_en": "Dili İngilizce yap",
+    "switch_language_to_tr": "Dili Türkçe yap",
+    "mobile_menu_toggle": "Menüyü aç veya kapat",
+    "linkedin_profile_aria_label": "LinkedIn profili",
+    "email_address_aria_label": "E-posta adresi"
+  },
+  "footer": "© 2026 Tansel KILIÇ · Teknoloji Lideri & AI Yöneticisi",
+  "footer_scroll_top": "Yukarı Çık"
 }

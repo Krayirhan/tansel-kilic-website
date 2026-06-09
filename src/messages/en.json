@@ -3,15 +3,21 @@
     "about": "About",
     "experience": "Experience",
     "expertise": "Expertise",
+    "education": "Education",
+    "responsible_ai": "Responsible AI",
     "contact": "Contact"
   },
   "hero": {
-    "subtitle": "I build large-scale systems, lead engineering organizations, and drive AI transformation that delivers real business impact.",
+    "subtitle": "20+ years building large-scale systems, growing engineering organizations, and delivering production-grade AI transformation.",
     "cta_primary": "Get in touch",
     "cta_secondary": "View experience",
     "title_line": "Technology Leader & AI Executive",
     "card_location": "Istanbul, Turkey · Hybrid",
-    "card_langs": "Turkish · English"
+    "card_langs": "Turkish · English",
+    "linkedin_label": "LinkedIn",
+    "linkedin_aria_label": "LinkedIn profile",
+    "email_label": "Email",
+    "email_aria_label": "Email address"
   },
   "about": {
     "label": "About",
@@ -86,8 +92,8 @@
   },
   "contact": {
     "label": "Contact",
-    "title": "Contact",
-    "desc": "If you want to talk about AI transformation, fintech, or high-scale platform engineering, send a message.",
+    "title": "Let's talk",
+    "desc": "If you're working on AI transformation, fintech, or large-scale platform engineering — you're in the right place.",
     "linkedin": "LinkedIn",
     "linkedin_sub": "tanselkilic",
     "email": "Email",
@@ -96,5 +102,15 @@
     "location_sub": "Open to remote",
     "avail_reply": "Typical response time: within 24 hours"
   },
-  "footer": "© 2026 Tansel KILIÇ · Technology Leader & AI Executive"
+  "ui": {
+    "home_aria_label": "Tansel KILIÇ homepage",
+    "language_group_label": "Language",
+    "switch_language_to_en": "Switch language to English",
+    "switch_language_to_tr": "Switch language to Turkish",
+    "mobile_menu_toggle": "Open or close menu",
+    "linkedin_profile_aria_label": "LinkedIn profile",
+    "email_address_aria_label": "Email address"
+  },
+  "footer": "© 2026 Tansel KILIÇ · Technology Leader & AI Executive",
+  "footer_scroll_top": "Back to top"
 }
