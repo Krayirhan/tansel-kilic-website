@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "setup": "powershell -ExecutionPolicy Bypass -File .\\setup.ps1",
+    "setup:dev": "powershell -ExecutionPolicy Bypass -File .\\setup.ps1 -Dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

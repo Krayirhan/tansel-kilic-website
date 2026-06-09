@@ -1,6 +1,6 @@
-# Tansel KILIÇ Website
+# Tansel KILIC Website
 
-Executive personal website for Tansel KILIÇ.
+Executive personal website for Tansel KILIC.
 
 ## Stack
 
@@ -18,6 +18,32 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## One-Click Setup
+
+Windows:
+
+```bash
+setup.bat
+```
+
+Or:
+
+```bash
+npm run setup
+```
+
+This will:
+
+- install dependencies
+- run lint
+- run a production build
+
+To install everything and immediately start the local server:
+
+```bash
+npm run setup:dev
+```
 
 ## Production
 
