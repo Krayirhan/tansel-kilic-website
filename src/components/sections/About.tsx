@@ -1,12 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function About() {
   const { t } = useLang();
   const a = t.about;
   const [mounted, setMounted] = useState(false);
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -25,29 +26,25 @@ export default function About() {
     >
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          style={{ willChange: "transform, opacity" }}
+          transition={{ duration: prefersReduced ? 0 : 0.5 }}
         >
-          {/* Label Indicator next to a decorative line */}
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-1 h-5 bg-gradient-to-b from-blue-600 to-indigo-650 rounded-full" />
-            <h2 className="text-xs font-bold tracking-widest uppercase text-blue-600">
+          {/* Section heading */}
+          <div className="mb-10">
+            <span className="text-xs font-bold tracking-widest uppercase text-blue-600 block mb-2">
               {a.label}
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+              {a.title}
             </h2>
           </div>
 
           {/* Grid Layout for bio text */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
-            {[a.p1, a.p2].map((p, i) => (
-              <p key={i} className="text-slate-500 leading-relaxed text-base">
-                {p}
-              </p>
-            ))}
-            {[a.p3, a.p4].map((p, i) => (
-              <p key={i + 2} className="text-slate-500 leading-relaxed text-base">
+            {[a.p1, a.p2, a.p3, a.p4].map((p, i) => (
+              <p key={`p${i}`} className="text-slate-500 leading-relaxed text-base">
                 {p}
               </p>
             ))}

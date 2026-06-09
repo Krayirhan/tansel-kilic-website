@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { experiences } from "@/lib/data";
 
 const FULL_COUNT = 6;
@@ -20,6 +20,7 @@ export default function Experience() {
   const isTr = locale === "tr";
   const e = t.experience;
   const [mounted, setMounted] = useState(false);
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -40,12 +41,11 @@ export default function Experience() {
         
         {/* Section Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: prefersReduced ? 0 : 0.5 }}
           className="mb-12"
-          style={{ willChange: "transform, opacity" }}
         >
           <span className="text-xs font-bold tracking-widest uppercase text-blue-600 block mb-2">
             {e.label}
@@ -64,13 +64,12 @@ export default function Experience() {
             const c = PALETTE[i % PALETTE.length];
             return (
               <motion.div
-                key={i}
+                key={exp.company + exp.date_en}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                transition={{ duration: prefersReduced ? 0 : 0.4, delay: prefersReduced ? 0 : i * 0.05 }}
                 className="relative pb-10 last:pb-0"
-                style={{ willChange: "transform, opacity" }}
               >
                 {/* Timeline node dot */}
                 <div
@@ -84,7 +83,7 @@ export default function Experience() {
 
                 {/* Card Container */}
                 <div
-                  className="bg-white border border-slate-200/90 rounded-2xl p-6 md:p-8 transition-all duration-350 hover:shadow-premium hover:border-slate-350"
+                  className="bg-white border border-slate-200/90 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-premium hover:border-slate-300"
                   style={{ borderLeftWidth: "4px", borderLeftColor: c.dot }}
                 >
                   {/* Header info */}
@@ -145,23 +144,22 @@ export default function Experience() {
               
               {earlier.map((exp, i) => (
                 <motion.div
-                  key={i}
+                  key={exp.company + exp.date_en}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.03 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: prefersReduced ? 0 : 0.3, delay: prefersReduced ? 0 : i * 0.03 }}
                   className="relative pb-6 last:pb-0"
-                  style={{ willChange: "transform, opacity" }}
                 >
                   {/* Compact list bullet */}
                   <div className="absolute -left-[2.18rem] top-2.5 w-2 h-2 rounded-full bg-white border border-slate-300" />
                   
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-slate-150 pb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-slate-200 pb-4">
                     <div className="flex flex-wrap items-baseline gap-2">
                       <span className="text-sm font-bold text-slate-900">
                         {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
                       </span>
-                      <span className="text-xs text-slate-450 font-semibold">
+                      <span className="text-xs text-slate-400 font-semibold">
                         · {exp.company}
                       </span>
                     </div>

@@ -42,7 +42,7 @@ export default function Navbar() {
       <div className="max-w-5xl mx-auto px-6 h-full flex items-center justify-between">
         {/* Logo */}
         <a
-          href="#"
+          href="/"
           className="font-extrabold text-lg tracking-tight text-slate-900 transition-colors hover:text-blue-600"
           aria-label="Tansel Kılıç Anasayfa"
         >
@@ -56,7 +56,6 @@ export default function Navbar() {
               key={link.id}
               href={`#${link.id}`}
               className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors duration-200"
-              aria-label={link.label}
             >
               {link.label}
             </a>
@@ -126,8 +125,7 @@ export default function Navbar() {
                   href={`#${link.id}`}
                   onClick={() => setMenuOpen(false)}
                   className="block py-3 text-base font-semibold text-slate-800 border-b border-slate-100 last:border-b-0 hover:text-blue-600 transition-colors"
-                  aria-label={link.label}
-                >
+                    >
                   {link.label}
                 </a>
               ))}

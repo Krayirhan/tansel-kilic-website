@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { BrainCircuit, Landmark, Cloud, ShieldCheck, Users, Rocket } from "lucide-react";
 
 const ACCENTS = ["#2563eb", "#7c3aed", "#0891b2", "#059669", "#d97706", "#dc2626"];
@@ -11,6 +11,7 @@ export default function Expertise() {
   const { t } = useLang();
   const e = t.expertise;
   const [mounted, setMounted] = useState(false);
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -40,12 +41,11 @@ export default function Expertise() {
         
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: prefersReduced ? 0 : 0.5 }}
           className="mb-12"
-          style={{ willChange: "transform, opacity" }}
         >
           <span className="text-xs font-bold tracking-widest uppercase text-blue-600 block mb-2">
             {e.label}
@@ -67,9 +67,8 @@ export default function Expertise() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                transition={{ duration: prefersReduced ? 0 : 0.4, delay: prefersReduced ? 0 : i * 0.05 }}
                 className="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden transition-all duration-300 hover:shadow-premium hover:-translate-y-1"
-                style={{ willChange: "transform, opacity" }}
               >
                 {/* Border-top decoration */}
                 <div

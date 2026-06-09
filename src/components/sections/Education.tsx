@@ -1,13 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 
 export default function Education() {
   const { t } = useLang();
-  const a = t.about;
+  const e = t.education;
   const [mounted, setMounted] = useState(false);
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -20,9 +21,9 @@ export default function Education() {
   }
 
   const cards = [
-    { title: a.edu1_title, sub: a.edu1_sub, date: a.edu1_date, accent: "#2563eb" },
-    { title: a.edu2_title, sub: a.edu2_sub, date: a.edu2_date, accent: "#7c3aed" },
-    { title: a.edu3_title, sub: a.edu3_sub, date: a.edu3_date, accent: "#059669" },
+    { title: e.edu1_title, sub: e.edu1_sub, date: e.edu1_date, accent: "#2563eb" },
+    { title: e.edu2_title, sub: e.edu2_sub, date: e.edu2_date, accent: "#7c3aed" },
+    { title: e.edu3_title, sub: e.edu3_sub, date: e.edu3_date, accent: "#059669" },
   ];
 
   return (
@@ -34,18 +35,17 @@ export default function Education() {
         
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: prefersReduced ? 0 : 0.5 }}
           className="mb-12"
-          style={{ willChange: "transform, opacity" }}
         >
           <span className="text-xs font-bold tracking-widest uppercase text-blue-600 block mb-2">
-            {t.education.label}
+            {e.label}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            {t.education.label}
+            {e.title}
           </h2>
         </motion.div>
 
@@ -57,9 +57,9 @@ export default function Education() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              transition={{ duration: prefersReduced ? 0 : 0.4, delay: prefersReduced ? 0 : i * 0.05 }}
               className="bg-slate-50 border border-slate-200/90 rounded-2xl p-6 flex gap-4 items-start transition-all duration-300 hover:shadow-premium hover:bg-white hover:border-slate-300"
-              style={{ borderTopWidth: "4px", borderTopColor: c.accent, willChange: "transform, opacity" }}
+              style={{ borderTopWidth: "4px", borderTopColor: c.accent }}
             >
               <div
                 className="p-2 rounded-lg flex-shrink-0"

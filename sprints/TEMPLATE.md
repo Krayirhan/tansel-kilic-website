@@ -13,7 +13,8 @@
 | **Başlık** | [kısa, eyleme dönük başlık] |
 | **Başlangıç** | YYYY-MM-DD |
 | **Bitiş (hedef)** | YYYY-MM-DD |
-| **Durum** | `Aktif` / `Tamamlandı` / `İptal` |
+| **Durum** | `Aktif` |
+| **Odak alanı** | [SEO / Performans / İçerik / Kod kalitesi / Erişilebilirlik / Karma] |
 
 ---
 
@@ -25,12 +26,23 @@
 
 ## Görevler
 
-- [ ] [Görev 1 — net, eyleme dönük]
-- [ ] [Görev 2]
-- [ ] [Görev 3]
+<!-- Her görev: öncelik etiketi [P1–P4], durum sembolü, net eyleme dönük ifade -->
+<!-- P1 = kritik düzeltme | P2 = eksik özellik | P3 = iyileştirme | P4 = araştırma -->
+
+- [ ] [P1] [Görev 1 — net, eyleme dönük]
+- [ ] [P2] [Görev 2]
+- [ ] [P3] [Görev 3]
 
 <!-- Kapsam değişikliğiyle eklenen görevler [+] ile işaretlenir: -->
-<!-- - [ ] [+] Sonradan eklenen görev -->
+<!-- - [ ] [+] [P2] Sonradan eklenen görev -->
+
+---
+
+## Etkilenen dosyalar (tahmini)
+
+<!-- Sprint başında tahmin, bitmeden güncelleme zorunlu değil -->
+- `src/...`
+- `sprints/...`
 
 ---
 
@@ -42,7 +54,7 @@
 
 ## Retrospektif
 
-> Bu bölüm sprint kapanışında doldurulur.
+> Bu bölüm sprint kapanışında doldurulur. Sprint açıkken boş bırak.
 
 **Neler iyi gitti?**
 [...]

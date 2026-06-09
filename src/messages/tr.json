@@ -10,10 +10,6 @@
     "cta_primary": "İletişime geç",
     "cta_secondary": "Deneyimi gör",
     "title_line": "Teknoloji Lideri & AI Yöneticisi",
-    "stat_years_label": "Yıl deneyim",
-    "stat_engineers_label": "Mühendis yönetimi",
-    "stat_companies_label": "Şirkette etki",
-    "photo_note": "Fotoğraf yakında",
     "card_location": "İstanbul, Türkiye · Hibrit",
     "card_langs": "Türkçe · İngilizce"
   },
@@ -23,7 +19,40 @@
     "p1": "Fintech, e-ticaret ve dijital ekosistemlerde büyük ölçekli platformları ve mühendislik organizasyonlarını 20 yılı aşkın bir süredir yönetiyorum. 50'nin üzerinde mühendisten oluşan dağıtık mühendislik ekiplerini yöneterek milyonlarca kullanıcıyı destekleyen cloud-native, mikroservis tabanlı mimariler hayata geçirdim.",
     "p2": "Son yıllarda AI ve LLM dönüşüm girişimlerini deneysel projeler olarak değil; karar almayı iyileştiren, operasyonları otomatikleştiren ve müşteri deneyimini güçlendiren üretim sistemleri olarak hayata geçirdim.",
     "p3": "İş ve yönetim paydaşlarıyla teknolojinin ölçülebilir etki yaratacağı alanları birlikte belirliyorum; kullanım senaryosu keşfinden devreye almaya kadar tüm süreci yönetiyorum.",
-    "p4": "Derin teknik bilgiyi, dijital dönüşümde sonuç odaklı pragmatik bir yönetim anlayışıyla birleştiriyorum.",
+    "p4": "Derin teknik bilgiyi, dijital dönüşümde sonuç odaklı pragmatik bir yönetim anlayışıyla birleştiriyorum."
+  },
+  "impact": {
+    "label": "Etki",
+    "stat1_value": "20+",
+    "stat1_label": "Yıl deneyim",
+    "stat1_sub": "2003'ten bu yana",
+    "stat2_value": "50+",
+    "stat2_label": "Mühendis yönetimi",
+    "stat2_sub": "Dağıtık, çok disiplinli ekipler",
+    "stat3_value": "10+",
+    "stat3_label": "Şirkette liderlik",
+    "stat3_sub": "CTO · Direktör · Danışman"
+  },
+  "responsibleai": {
+    "label": "Sorumlu AI",
+    "title": "AI'ı doğru inşa etmek",
+    "subtitle": "Üretim kalitesinde AI sistemleri kurarken doğruluk, gizlilik ve insan denetimini merkeze alıyorum. Deney değil, iş etkisi.",
+    "project1_tag": "Ozan · 2024–2025",
+    "project1_title": "Belge Zekası Platformu",
+    "project1_desc": "Yüksek hacimli finansal belgeleri analiz eden yerel LLM tabanlı sistem. On-premise mimarisi ile veri gizliliği güvence altına alındı; manuel inceleme süresi ve operasyonel yük ölçülebilir biçimde azaltıldı.",
+    "project2_tag": "Ozan · 2024–2025",
+    "project2_title": "FraudInsight — AI Tabanlı Dolandırıcılık Tespiti",
+    "project2_desc": "NLP ve LLM kullanarak işlem verilerini ve metinsel sinyalleri analiz eden fraud tespit sistemi. Kural tabanlı sistemlerin ötesinde şüpheli desenleri gerçek zamanlı tespit ediyor. Fintech, e-ticaret ve telekom için çapraz alan ölçeklenebilirliği.",
+    "p1_title": "Üretim öncelikli",
+    "p1_desc": "Doğrulanmış iş etkisi olmadan deployment yok. Her sistem gerçek operasyonel yük altında tasarlanır.",
+    "p2_title": "İnsan denetimi",
+    "p2_desc": "Kritik kararlarda insan-döngüsü modelleri varsayılan. Otomasyon güven inşa edince, kademeli olarak genişler.",
+    "p3_title": "Gizlilik tasarımı",
+    "p3_desc": "Finansal ve hassas veriler için on-premise model mimarisi. Veri sınır dışına çıkmaz, uyumluluk mimariyle çözülür."
+  },
+  "education": {
+    "label": "Eğitim",
+    "title": "Akademik geçmiş",
     "edu1_title": "İstanbul Teknik Üniversitesi",
     "edu1_sub": "Büyük Veri & İş Analitiği, YL",
     "edu1_date": "Ağu 2024 — Devam ediyor",
@@ -33,9 +62,6 @@
     "edu3_title": "Ondokuz Mayıs Üniversitesi",
     "edu3_sub": "Bilgisayar Programcılığı, Ön Lisans",
     "edu3_date": "1999 — 2001"
-  },
-  "education": {
-    "label": "Eğitim"
   },
   "experience": {
     "label": "Kariyer",

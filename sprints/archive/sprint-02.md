@@ -1,44 +1,62 @@
-# Sprint-02 — Tasarım Yenileme
+# Sprint-02 — Kod Kalitesi + Erişilebilirlik
 
 ## Meta
 
 | Alan | Değer |
 |------|-------|
 | **Sprint No** | 02 |
-| **Başlık** | Tasarım Yenileme |
-| **Başlangıç** | 2026-06-08 |
-| **Bitiş (hedef)** | 2026-06-08 |
+| **Başlık** | Kod Kalitesi + Erişilebilirlik |
+| **Başlangıç** | 2026-06-09 |
+| **Bitiş (hedef)** | 2026-06-13 |
 | **Durum** | `Tamamlandı` |
+| **Odak alanı** | Kod kalitesi · Erişilebilirlik |
 
 ---
 
 ## Hedef (Goal)
 
-Siteyi görsel olarak güçlü, havadar ve profesyonel hale getirmek.
+Tekrar eden kodu birleştir, erişilebilirlik hatalarını düzelt. Sprint bittiğinde `LinkedInIcon` tek yerde tanımlı, `prefers-reduced-motion` tüm animasyonlu sectionlarda, `MapPin` card'ı interaktif olmayan bir element.
 
 ---
 
 ## Görevler
 
-- [x] Tasarım sorunlarını tespit et
-- [x] globals.css ve layout düzelt
-- [x] Tüm section component'lerini yeniden tasarla (inline style ile)
-- [x] Tailwind v4 uyumluluğunu doğrula
-- [-] Screenshot ile sonucu onayla — preview bug nedeniyle JS eval ile doğrulandı
+- [x] [P3] `LinkedInIcon` SVG'yi `src/components/ui/LinkedInIcon.tsx`'e taşı — `Hero.tsx` ve `Contact.tsx`'teki kopyaları kaldır
+- [x] [P3] `LangContext.tsx:13` — default context değerindeki `locale: "tr"` / `t: messages.en` tutarsızlığını düzelt
+- [x] [P2] Tüm animasyonlu Client Component'lere `useReducedMotion()` guard ekle (Hero, About, Experience, Expertise, Education, Contact)
+- [x] [P2] `Contact.tsx` — `MapPin` card'ını `<a href="#">` yerine `<div>` yap, hover stilini koru
+- [x] [P3] Tüm dosyalardaki `style={{ willChange: "transform, opacity" }}` satırlarını kaldır
+
+---
+
+## Etkilenen dosyalar (tahmini)
+
+- `src/components/ui/LinkedInIcon.tsx` (yeni)
+- `src/components/sections/Hero.tsx`
+- `src/components/sections/Contact.tsx`
+- `src/components/sections/About.tsx`
+- `src/components/sections/Experience.tsx`
+- `src/components/sections/Expertise.tsx`
+- `src/components/sections/Education.tsx`
+- `src/context/LangContext.tsx`
+
+---
+
+## Notlar
+
+Sprint-01 tamamlandıktan sonra başla.
 
 ---
 
 ## Retrospektif
 
+> Sprint tamamlandığında doldurulacak.
+
 **Neler iyi gitti?**
-Inline style yaklaşımı Tailwind v4 uyumsuzluklarını devre dışı bıraktı. Tüm spacing, renkler, border'lar doğru render ediliyor. About kartlarına renkli sol border, Expertise'e top accent line, Experience'a kart layout eklendi.
+Tüm 5 görev tek oturumda tamamlandı. `LinkedInIcon` artık tek kaynaktan geliyor. `useReducedMotion` 6 section'a tutarlı biçimde eklendi. `willChange` sıfır satıra indi.
 
 **Neler zorlandı / engelledi?**
-Detaylı puanlama sonucu 5.5/10 çıktı. Hero sağ tarafı boş, 0 mobile media query, 2 h1, OG meta yok gibi kritik sorunlar tespit edildi.
+`Contact.tsx`'te `motion.a` / `motion.div` conditional rendering gerekti — `isLink` flag ile temiz çözüldü.
 
 **Bir sonraki sprinte taşınan:**
-- Mobile responsive (Sprint-03)
-- Semantic H1 fix (Sprint-03)
-- OG meta tags (Sprint-03)
-- Hero redesign (Sprint-04)
-- SVG ikonlar + animasyonlar (Sprint-05)
+- Sprint-03 içerik bekliyor: Impact Metrics ve Responsible AI için kullanıcıdan sayı ve tema onayı gerekli.

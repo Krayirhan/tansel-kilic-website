@@ -1,6 +1,7 @@
 # Sprint Rules
 
-Bu dosya sprint sisteminin kurallarını tanımlar. Her sprint bu kurallara uymak zorundadır.
+> **Not:** Asıl kural dosyası `sprints/_rules.md` — CLAUDE.md bu dosyayı otomatik okur.
+> Bu dosya insanlar için okunabilirlik alias'ıdır. Kuralları buraya değil `_rules.md`'ye yaz.
 
 ---
 

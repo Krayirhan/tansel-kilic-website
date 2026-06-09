@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { messages, type Locale, type Messages } from "@/lib/i18n";
 
 type LangContextType = {
@@ -11,12 +11,16 @@ type LangContextType = {
 
 const LangContext = createContext<LangContextType>({
   locale: "tr",
-  t: messages.en,
+  t: messages.tr,
   setLocale: () => {},
 });
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocale] = useState<Locale>("tr");
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   return (
     <LangContext.Provider value={{ locale, t: messages[locale], setLocale }}>

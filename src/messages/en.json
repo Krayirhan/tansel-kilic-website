@@ -10,10 +10,6 @@
     "cta_primary": "Get in touch",
     "cta_secondary": "View experience",
     "title_line": "Technology Leader & AI Executive",
-    "stat_years_label": "Years of experience",
-    "stat_engineers_label": "Engineers led",
-    "stat_companies_label": "Companies impacted",
-    "photo_note": "Photo coming soon",
     "card_location": "Istanbul, Turkey · Hybrid",
     "card_langs": "Turkish · English"
   },
@@ -23,7 +19,40 @@
     "p1": "I have 20+ years of experience leading large-scale platforms and engineering organizations across fintech, e-commerce, and digital ecosystems. I have built and led distributed engineering teams of 50+ members, delivering cloud-native, microservices-based architectures that support millions of users.",
     "p2": "In recent years, I have led AI and LLM transformation initiatives — not as experiments, but as production systems that improve decision-making, automate operations, and enhance customer experience.",
     "p3": "I work closely with business and executive stakeholders to identify where technology can drive measurable impact, and oversee the full lifecycle from use case discovery to rollout.",
-    "p4": "I combine deep technical expertise with a pragmatic, execution-focused approach to digital transformation.",
+    "p4": "I combine deep technical expertise with a pragmatic, execution-focused approach to digital transformation."
+  },
+  "impact": {
+    "label": "Impact",
+    "stat1_value": "20+",
+    "stat1_label": "Years of experience",
+    "stat1_sub": "Since 2003",
+    "stat2_value": "50+",
+    "stat2_label": "Engineers led",
+    "stat2_sub": "Distributed, cross-functional teams",
+    "stat3_value": "10+",
+    "stat3_label": "Companies led",
+    "stat3_sub": "CTO · Director · Advisor"
+  },
+  "responsibleai": {
+    "label": "Responsible AI",
+    "title": "Building AI the right way",
+    "subtitle": "When deploying production-grade AI systems, I put accuracy, privacy, and human oversight at the center. Not experiments — business impact.",
+    "project1_tag": "Ozan · 2024–2025",
+    "project1_title": "Document Intelligence Platform",
+    "project1_desc": "Local LLM-based system analyzing high-volume financial documents. On-premise architecture ensured data privacy compliance; manual review effort and operational overhead reduced measurably.",
+    "project2_tag": "Ozan · 2024–2025",
+    "project2_title": "FraudInsight — AI-Powered Fraud Detection",
+    "project2_desc": "Fraud detection system analyzing transaction data and textual signals using NLP and LLM. Identifies suspicious patterns beyond rule-based systems in real time. Designed for cross-domain scalability across fintech, e-commerce, and telecom.",
+    "p1_title": "Production-first",
+    "p1_desc": "No deployment without validated business impact. Every system is designed under real operational load.",
+    "p2_title": "Human oversight",
+    "p2_desc": "Human-in-the-loop models are the default for critical decisions. Automation expands incrementally as trust is established.",
+    "p3_title": "Privacy by design",
+    "p3_desc": "On-premise model architecture for financial and sensitive data. Data never leaves the boundary — compliance is solved at the architecture level."
+  },
+  "education": {
+    "label": "Education",
+    "title": "Academic background",
     "edu1_title": "Istanbul Technical University",
     "edu1_sub": "MSc, Big Data & Business Analytics",
     "edu1_date": "Aug 2024 — Ongoing",
@@ -33,9 +62,6 @@
     "edu3_title": "Ondokuz Mayıs University",
     "edu3_sub": "Computer Programming, Associate's Degree",
     "edu3_date": "1999 — 2001"
-  },
-  "education": {
-    "label": "Education"
   },
   "experience": {
     "label": "Career",

@@ -1,478 +1,359 @@
-# AGENTS.md
+# AGENTS.md — Tansel KILIÇ Portfolio
 
-## Project Overview
+## Stack
 
-This project is a premium personal portfolio / executive profile website for **Tansel KILIÇ**, a technology leader focused on AI transformation, scalable platforms, fintech/payment systems, cloud architecture, security, and engineering leadership.
+| Tool | Version |
+|------|---------|
+| Next.js | 16 (App Router) |
+| React | 19 |
+| TypeScript | 5 |
+| Tailwind CSS | 4 (CSS-first, `@theme` tokens) |
+| Framer Motion | 12 |
+| Package manager | pnpm |
+| i18n | Custom `LangContext` — no external library |
 
-The website must feel like an executive landing page, not a generic résumé template.
-
-Main goals:
-
-* Premium minimalist white theme
-* World-class performance
-* Strong SEO
-* High accessibility
-* Fully responsive layout
-* Turkish and English support
-* Clean, maintainable code
-
-## Tech Stack
-
-Use the existing stack:
-
-* Next.js 16
-* React 19
-* App Router
-* TypeScript
-* Tailwind CSS v4
-* Framer Motion v12
-* Local JSON-based i18n
-
-Use Server Components by default.
-
-Use Client Components only when required for:
-
-* Animations
-* Mobile menu state
-* Language switcher behavior
-* Scroll-based UI
-* Browser-only APIs
-* Event handlers
+---
 
 ## Project Structure
 
-Prefer this structure:
-
-```txt
+```
 src/
   app/
-    layout.tsx
-    page.tsx
-    globals.css
-    sitemap.ts
-    robots.ts
+    layout.tsx       — metadata, Inter font, LangProvider
+    page.tsx         — "use client" (LangContext dependency); assembles sections
+    globals.css      — Tailwind v4 base + @theme design tokens
   components/
-    layout/
-    sections/
-    ui/
-    motion/
-  messages/
-    tr.json
-    en.json
+    Navbar.tsx
+    Footer.tsx
+    sections/        — one file per page section
+    ui/              — reusable primitives (Tag, etc.)
+  context/
+    LangContext.tsx  — TR/EN toggle, client-side only
   lib/
-  types/
+    data.ts          — experience timeline (TS, not JSON — has _en/_tr fields)
+    i18n.ts
+  messages/
+    tr.json          — all visible copy except experience entries
+    en.json
 ```
 
-Keep components small, readable, and focused.
+---
 
-## Design Direction
+## Known Issues (do not silently ignore)
 
-The design should feel:
+Line numbers are approximate — verify by reading the file before acting on them.
 
-* Premium
-* Minimal
-* White
-* Calm
-* Executive
-* Trustworthy
-* Modern
+| Issue | Location | Impact |
+|-------|----------|--------|
+| `lang="tr"` SSR-only | `layout.tsx` | **Accepted** — default locale IS Turkish; useEffect updates to "en" on client switch. Static export can't do better without separate /tr /en URLs. |
+| LinkedIn/email URLs hardcoded | `Hero.tsx` ~L80,85 | Should be in messages or a config constant |
+| `lucide-react "^1.17.0"` | `package.json` | Resolves correctly — verified via pnpm install |
 
-Use:
+**Fixed issues (no longer tracked):**
+- `page.tsx` "use client" → fixed via `PageSections` wrapper (Sprint-04)
+- JSON-LD missing → added Person + ProfilePage + sameAs (Sprint-01, Sprint-06)
+- `sitemap.ts` / `robots.ts` missing → added (Sprint-01)
+- OG image missing → `public/og-image.png` + metadata (Sprint-01)
 
-* White and off-white backgrounds
-* Soft borders
-* Subtle shadows
-* Rounded cards
-* Large readable typography
-* Clean spacing
-* One restrained accent color
-* Light, elegant motion
+**`page.tsx` "use client" — why it exists and how to fix it:**
+`LangContext` is a React Context, which requires a client boundary. Because `page.tsx` consumes `LangProvider`'s children, it must be a Client Component. To fix this without a full i18n rewrite: move section imports into a separate `<PageSections />` Client Component wrapper and keep `page.tsx` as a Server Component that only renders `<PageSections />`. This way only the wrapper is a Client Component, not the route itself. Do not attempt this fix without user approval — it is a structural refactor.
 
-Avoid:
+---
 
-* Heavy dark UI
-* Excessive gradients
-* Loud colors
-* Generic template feeling
-* Too many animations
-* Inline styles
-* Visual clutter
+## Sections
+
+| Section | Status |
+|---------|--------|
+| Navbar | Done |
+| Hero | Done |
+| Impact Metrics | **TODO — do not build without user-provided numbers** |
+| About | Done |
+| Experience | Done |
+| Expertise | Done |
+| Responsible AI | **TODO — do not build without user-provided content** |
+| Education | Done |
+| Contact | Done |
+| Footer | Done |
+
+**Impact Metrics:** Needs verified numbers (years of experience, engineers managed, companies). Do not invent or estimate. Ask the user before building.
+
+**Responsible AI:** Needs user-approved themes and copy. Suggested topics exist in the original brief but must be confirmed before use. This section must not read like marketing — keep it strategic and specific.
+
+---
 
 ## Content Rules
 
-Do not invent facts about Tansel KILIÇ.
+Use only verified or user-provided information. Mark gaps with `// TODO` in code or neutral placeholder copy in messages.
 
-Never fabricate:
+**Tone:** executive, confident, concise. No buzzwords, no inflated AI claims.
 
-* Company names
-* Dates
-* Metrics
-* Awards
-* Certifications
-* Education details
-* Team sizes
-* Revenue numbers
-* Case studies
-* Testimonials
-
-Use only verified or user-provided information.
-
-If information is missing, use a `TODO` comment or neutral wording.
-
-Preferred tone:
-
-* Executive
-* Clear
-* Confident
-* Concise
-* Strategic
-* Human
-
-Avoid empty buzzwords and exaggerated AI claims.
+---
 
 ## i18n Rules
 
-The site supports Turkish and English.
+- All visible copy → `tr.json` + `en.json` (both, always)
+- **Exception:** experience entries live in `src/lib/data.ts` with `_en`/`_tr` suffixed fields (see data structure below)
+- Never hardcode visible text in components — not copy, not labels, not display URLs
+- Keys must be semantic: `hero.title`, not `text1`
+- TR and EN must stay meaning-aligned on every change
 
-All user-facing text must come from:
+---
 
-```txt
-src/messages/tr.json
-src/messages/en.json
-```
+## `data.ts` Experience Entry Structure
 
-When adding or changing copy:
+Each entry in `src/lib/data.ts` uses this shape. Follow it exactly when adding or editing entries:
 
-1. Update `tr.json`
-2. Update `en.json`
-3. Keep both meanings aligned
-4. Do not hardcode visible text in components
-
-Use clear translation keys.
-
-Good:
-
-```json
+```ts
 {
-  "hero": {
-    "title": "...",
-    "description": "..."
-  }
+  date_en: string;      // required
+  date_tr: string;      // required
+  role_en: string;      // required
+  role_tr?: string;     // optional — falls back to role_en if omitted
+  company: string;      // required — not localized
+  desc_en: string;      // required
+  desc_tr: string;      // required
+  tags: string[];       // required — English tags
+  tags_tr: string[];    // required — Turkish tags
+  current?: boolean;    // optional — marks active role with filled dot
 }
 ```
 
-Bad:
+The first `FULL_COUNT` (currently **6**) entries render as full timeline cards with description and tags. Entries beyond that render as a compact list (role + company + date only). To change the cutoff, edit `FULL_COUNT` in `Experience.tsx` — this is a deliberate design decision, not a bug. Do not change it without user approval.
 
-```json
-{
-  "text1": "...",
-  "title2": "..."
+---
+
+## LangContext Usage
+
+Always import `useLang` from `@/context/LangContext`. Use the minimum needed:
+
+```ts
+// Only need copy (most sections):
+const { t } = useLang();
+
+// Need copy + locale (when rendering data.ts fields like role_tr / desc_tr):
+const { locale, t } = useLang();
+const isTr = locale === "tr";
+```
+
+Do not destructure `setLocale` unless the component changes language (only Navbar does this).
+
+---
+
+## Mounted Pattern (required in all Client Components)
+
+All Client Components that read `useLang()` or browser APIs must use this hydration guard to prevent SSR/client mismatch:
+
+```ts
+const [mounted, setMounted] = useState(false);
+useEffect(() => { setMounted(true); }, []);
+
+if (!mounted) {
+  // Return a static skeleton with matching height to prevent layout shift
+  return <section id="..." className="py-20 bg-white min-h-[400px]" />;
 }
 ```
 
-## Recommended Sections
+The skeleton must have the same `id`, background color, and approximate height as the real section.
 
-The page should include:
+---
 
-1. Navbar
-2. Hero
-3. Impact Metrics
-4. About
-5. Experience
-6. Expertise
-7. Responsible AI
-8. Education
-9. Contact
-10. Footer
+## Adding a New Section
 
-## Section Guidelines
+1. Create `src/components/sections/NewSection.tsx`
+2. Import and add it to `<main>` in `src/app/page.tsx` in the correct order
+3. Add copy keys to both `tr.json` and `en.json`
+4. If it needs a nav link, add it to the `links` array in `Navbar.tsx`
+5. Use `"use client"` + mounted pattern if the section uses `useLang()` or animations
 
-### Hero
+Before starting, read: `page.tsx`, `tr.json`, `en.json`, and the adjacent section files to match the background alternation pattern.
 
-The Hero must quickly explain who Tansel KILIÇ is.
+---
 
-Include:
+## Design Rules
 
-* Executive headline
-* Short positioning text
-* Email CTA
-* LinkedIn CTA
-* Availability or location indicator
-* Optional metric cards
+White minimalist executive theme. Use design tokens — no arbitrary color or shadow values.
 
-### About
+**Section background alternation** — sections alternate between `bg-white` and `bg-slate-50` to create visual rhythm. Current pattern:
 
-Use short paragraphs.
+| Section | Background |
+|---------|-----------|
+| Hero | `bg-gradient-to-b from-slate-50/50 via-white to-white` |
+| About | `bg-slate-50` + `border-y border-slate-200/80` |
+| Experience | `bg-white` |
+| Expertise | `bg-slate-50` + `border-y border-slate-200/80` |
+| Education | `bg-white` + `border-b border-slate-200/80` |
+| Contact | `bg-slate-50` + `border-t border-slate-200/80` |
 
-Focus on:
+New sections must follow this alternating pattern. Use `bg-slate-50` with `border-y border-slate-200/80` for "off-white" sections, `bg-white` for "white" sections.
 
-* Technology leadership
-* AI transformation
-* Fintech and payment systems
-* Cloud architecture
-* Secure scalable platforms
-* Engineering leadership
+**Cards inside sections** always use `bg-white` regardless of the section background — this creates the lifted-card effect on `bg-slate-50` sections.
 
-### Experience
+Avoid dark UI, heavy gradients, loud colors, visual clutter, generic template patterns.
 
-Use an impact-oriented timeline.
+---
 
-Each major role may include:
+## Design Tokens
 
-* Role title
-* Company
-* Date range, only if verified
-* Short summary
-* Key responsibilities
-* Skill tags
+Defined in `src/app/globals.css`. Use these — do not use arbitrary color or shadow values:
 
-Older roles can be shown as a compact list.
+| Token | Tailwind equivalent | Value | Use |
+|-------|-------------------|-------|-----|
+| `--color-accent` | `text-blue-600` / `bg-blue-600` | `#2563eb` | Primary buttons, links, highlights |
+| `--color-accent-hover` | `text-blue-700` / `bg-blue-700` | `#1d4ed8` | Hover state for accent elements |
+| `--color-surface-bg` | `bg-slate-50` | `#f8fafc` | Off-white section backgrounds (CSS var only — use `bg-slate-50` in JSX) |
+| `--color-muted-text` | `text-slate-500` | `#64748b` | Secondary text, labels |
+| `--color-main-text` | `text-slate-900` | `#0f172a` | Primary body text, headings |
+| `--shadow-premium` | `shadow-premium` ¹ | soft 4-layer | Card resting shadow |
+| `--shadow-premium-hover` | `shadow-premium-hover` ¹ | elevated | Card hover shadow |
 
-Do not add fake metrics.
+¹ These are custom `@utility` classes defined in `globals.css`, not standard Tailwind utilities. They work as `className="shadow-premium"` in JSX but will not appear in Tailwind docs or autocomplete. If they don't work, check that `globals.css` is imported in `layout.tsx`.
 
-### Expertise
+Reuse custom `@utility` classes defined in `globals.css` ¹:
+- `card-premium` — white card with border, radius, and resting shadow
+- `card-premium-hover` — adds lift + shadow on hover
+- `text-gradient` — blue-to-violet gradient text effect
 
-Use six cards:
+---
 
-* AI Transformation
-* Fintech & Payment Systems
-* Cloud Architecture
-* Security & Governance
-* Engineering Leadership
-* Digital Transformation
+## Code Rules
 
-### Responsible AI
+- Server Components by default
+- Client Components only for: animations, menu state, lang switch, scroll behavior, event handlers
+- Explicit TypeScript prop types on every component
+- No hardcoded visible copy in JSX
 
-Include a dedicated section for responsible AI and AI trust.
+**`ui/` primitives — when to extract:**
+Extract a pattern to `src/components/ui/` when the same JSX structure appears in 2+ sections with only prop differences. Current primitives:
 
-Suggested themes:
+- `Tag` — skill tag pill (white bg, slate border, rounded-full). Use this for any standalone tag that is not inside the Experience color palette context. Do not recreate tag styles inline.
 
-* Human-in-the-loop systems
-* AI governance
-* Trust thresholds
-* Secure AI workflows
-* Production-ready LLM adoption
-* Risk-aware automation
+If you need a variant (e.g. colored tag), add a `variant` prop to `Tag` rather than writing a new component or inlining styles.
 
-Keep this section mature and strategic.
+**When NOT to extract:** one-off layouts, section-specific structures, anything that would need 4+ props to cover its only two use cases.
 
-### Contact
+---
 
-Include:
+## Experience Color Palette
 
-* Email CTA
-* LinkedIn CTA
-* Availability indicator
-* Short professional contact text
+`Experience.tsx` uses a 6-color `PALETTE` array cycled by index. Do not modify the palette order — it affects all rendered cards. Each color has `dot`, `tagBg`, `tagText`, `tagBorder` fields used for the timeline dot and skill tags. These inline styles are intentional — the palette cannot be expressed with static Tailwind classes.
 
-Do not rely only on color for availability status.
-
-## Accessibility Rules
-
-Accessibility is mandatory.
-
-Follow these rules:
-
-* Use semantic HTML
-* Use correct heading order
-* Use visible focus states
-* Ensure keyboard navigation
-* Add `aria-label` for icon-only buttons
-* Use meaningful alt text
-* Maintain sufficient color contrast
-* Respect `prefers-reduced-motion`
-* Avoid hover-only interactions
-* Do not rely only on color to show state
-
-Use these elements correctly:
-
-* `header`
-* `nav`
-* `main`
-* `section`
-* `article`
-* `footer`
-
-## SEO Rules
-
-Implement strong SEO.
-
-Include:
-
-* Metadata API
-* Localized title and description
-* Open Graph metadata
-* Twitter card metadata
-* Canonical URL
-* Sitemap
-* Robots file
-* JSON-LD structured data
-
-Recommended JSON-LD types:
-
-* `Person`
-* `ProfilePage`
-
-Use `sameAs`, `knowsAbout`, and `alumniOf` only when verified.
-
-Do not add unsupported claims to structured data.
-
-## Performance Rules
-
-Performance is a core requirement.
-
-Follow these rules:
-
-* Prefer Server Components
-* Minimize JavaScript
-* Avoid unnecessary dependencies
-* Use `next/image`
-* Avoid layout shift
-* Lazy-load heavy non-critical parts
-* Keep Framer Motion usage controlled
-* Optimize fonts
-* Avoid third-party scripts unless approved
-
-Target Lighthouse scores:
-
-* Performance: 95+
-* Accessibility: 95+
-* Best Practices: 95+
-* SEO: 95+
-
-## Tailwind CSS Rules
-
-Use Tailwind CSS v4 utilities.
-
-Rules:
-
-* Use CSS-first design tokens
-* Define reusable values in `@theme`
-* Avoid inline styles
-* Avoid random arbitrary values
-* Keep class names readable
-* Reuse UI primitives
-* Keep spacing, colors, shadows, and radius consistent
+---
 
 ## Animation Rules
 
-Use Framer Motion only for subtle premium motion.
+Framer Motion for subtle motion only: fade-in, small Y reveal, gentle card hover, menu transitions.
 
-Good:
+**`willChange` inline style** is acceptable only on Framer Motion wrappers:
+```tsx
+style={{ willChange: "transform, opacity" }}
+```
+Do not use `willChange` on static elements. All other inline styles are prohibited.
 
-* Fade in
-* Small vertical movement
-* Gentle card hover
-* Mobile menu transitions
-* Section reveal
+**Standard `viewport` config for scroll-triggered animations** — use this consistently across all sections:
+```tsx
+whileInView={{ opacity: 1, y: 0 }}
+viewport={{ once: true, margin: "-100px" }}
+```
+`once: true` prevents re-triggering on scroll up. `margin: "-100px"` triggers the animation slightly before the element enters the viewport. Do not omit `margin` — without it animations fire too late on fast scrolls.
 
-Avoid:
+For staggered children (e.g. card grids), add `delay: index * 0.05` to `transition`. Cap the delay at `0.3s` total — more than ~6 items should not stagger.
 
-* Heavy parallax
-* Constant motion
-* Bouncing effects
-* Scroll-jacking
-* Distracting animations
+**`prefers-reduced-motion` guard** — required in any `"use client"` component with non-trivial animation (anything with `y` movement, scale, or delay chains). Use Framer Motion's `useReducedMotion()` hook — this hook requires `"use client"`, do not call it in Server Components.
 
-Always respect reduced motion preferences.
+`"use client"` must be the very first line of the file, before any imports. Pattern:
 
-## Code Style
+```tsx
+"use client";
+import { motion, useReducedMotion } from "framer-motion";
 
-Use:
+export default function MySection() {
+  const prefersReduced = useReducedMotion();
 
-* TypeScript
-* Clear component names
-* Explicit prop types
-* Small components
-* Reusable UI primitives
-* Server Components by default
-
-Avoid:
-
-* Over-engineering
-* Duplicated JSX
-* Duplicated long class strings
-* Hardcoded visible copy
-* Unnecessary Client Components
-
-## Commands
-
-Use the package manager from the lockfile.
-
-For pnpm:
-
-```bash
-pnpm install
-pnpm dev
-pnpm lint
-pnpm build
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: prefersReduced ? 0 : 0.5 }}
+    />
+  );
+}
 ```
 
-For npm:
+Simple `opacity`-only fade-in does not require this guard. No parallax, bounce, scroll-jacking, or constant motion.
 
-```bash
-npm install
-npm run dev
-npm run lint
-npm run build
-```
+---
 
-For yarn:
+## Accessibility Rules
 
-```bash
-yarn install
-yarn dev
-yarn lint
-yarn build
-```
+- Semantic HTML: `header`, `nav`, `main`, `section`, `article`, `footer`
+- Single `h1` per page (`Hero` owns it); all other sections use `h2`
+- Visible focus states — do not remove `outline` without a visible replacement
+- `aria-label` on every icon-only interactive element
+- Meaningful `alt` text on images — never empty `alt=""` on informative images
+- Never rely on color alone to convey state
 
-Do not claim checks passed unless they were actually run.
+**Project-specific patterns:**
 
-## Agent Workflow
+Lang switcher in Navbar — two `<button>` elements inside a `<div>`. If refactored, use `role="group"` + `aria-label="Language"` on the wrapper. Each button's `aria-label` must read `"Switch language to EN"` / `"Switch language to TR"`, not just `"EN"` / `"TR"`.
 
-Before editing:
+Mobile menu toggle — already has `aria-label="Menüyü Aç/Kapat"` and `aria-expanded`. Keep both when editing. The drawer must be reachable by keyboard (Tab from the trigger).
 
-1. Read `package.json`
-2. Inspect `src/app`
-3. Inspect `src/components`
-4. Inspect `src/messages`
-5. Inspect `src/app/globals.css`
+Section labels (e.g. `"Kariyer"`, `"Uzmanlık"`) rendered as `<span>` above each `h2` are decorative — they do not need `aria` roles. Do not add `aria-hidden` either; they are visible text.
 
-While editing:
+---
 
-1. Keep changes small
-2. Preserve the white minimalist theme
-3. Keep TR/EN content synchronized
-4. Use Server Components by default
-5. Maintain accessibility
-6. Maintain SEO
-7. Run relevant checks when possible
+## SEO Rules
 
-## Do Not
+**Current state:** `layout.tsx` has static English-only metadata. No TR locale, no JSON-LD, no sitemap.
 
-Do not:
+**Target state and how to get there:**
 
-* Invent personal facts
-* Add fake metrics
-* Add fake testimonials
-* Add unsupported dates
-* Add unnecessary dependencies
-* Add analytics without approval
-* Scrape private LinkedIn data
-* Break i18n
-* Overuse animations
-* Use inline styles for normal UI
-* Convert everything to Client Components
+Localized metadata — use `generateMetadata` in `layout.tsx` (or per-page) and read locale from a cookie or search param once LangContext is RSC-compatible. Until then, keep English metadata and note the gap. Do not hardcode Turkish metadata alongside English — it produces mixed-language OG tags.
+
+`alternates.languages` — add only when the site has separate TR/EN URLs (e.g. `/tr`, `/en`). Currently it is a single-URL SPA with client-side lang switch, so `alternates.languages` is not applicable yet.
+
+JSON-LD — add a `<script type="application/ld+json">` in `layout.tsx` with `Person` + `ProfilePage` types. Use only verified fields. Do not add `alumniOf`, `sameAs`, or `knowsAbout` without user confirmation.
+
+Sitemap + robots.txt — create `src/app/sitemap.ts` and `src/app/robots.ts` using Next.js conventions. Single URL for now.
+
+OG image — add `opengraph-image.png` to `src/app/` (Next.js picks it up automatically) or use `generateImageMetadata`.
+
+---
+
+## Workflow
+
+**Standard edit:**
+1. Read `package.json` and the exact files you will touch
+2. Make the change; sync TR/EN on every copy change
+3. Run `pnpm lint`
+4. Run `pnpm build` when: new component, new import, metadata change, route change, structural refactor — skip for copy-only changes in `tr.json` / `en.json`
+5. Never claim a check passed without running it
+
+**Adding a new section** — follow the steps in the "Adding a New Section" section above, then run `pnpm lint` + `pnpm build`.
+
+**After every task, report:**
+- What changed and which files were edited
+- TR/EN sync status
+- Checks run (or why skipped)
+- Open TODOs if any
+
+---
+
+## Hard Rules
+
+- Never invent personal facts, metrics, or dates
+- Never add analytics without approval
+- Never scrape LinkedIn
+- Never add a dependency without checking if the existing stack covers it
+- Never convert a Server Component to Client Component without a concrete reason
+
+---
 
 ## Definition of Done
 
-A task is complete when:
-
-* The requested change works
-* Code is clean and maintainable
-* UI remains premium and minimal
-* Mobile and desktop layouts work
-* TR/EN content is synchronized
-* Accessibility is preserved
-* SEO is preserved or improved
-* Relevant checks were run or clearly noted
+- Change works as requested
+- TR/EN synchronized
+- No new a11y or SEO regressions
+- `pnpm lint` passes (or failure explicitly noted)
+- Layout verified at mobile (375px), tablet (768px), desktop (1280px) — use browser devtools or `pnpm dev` + resize; do not claim responsive without checking
