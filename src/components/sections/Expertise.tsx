@@ -1,36 +1,76 @@
 "use client";
-import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
-import { motion, useReducedMotion } from "framer-motion";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { BrainCircuit, Landmark, Cloud, ShieldCheck, Users, Rocket } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { Messages } from "@/lib/i18n";
 
-const ACCENTS = ["#2563eb", "#7c3aed", "#0891b2", "#059669", "#d97706", "#dc2626"];
-const ICONS = [BrainCircuit, Landmark, Cloud, ShieldCheck, Users, Rocket];
+type ExpertiseCopyKey = keyof Messages["expertise"];
+
+type ExpertiseItem = {
+  titleKey: ExpertiseCopyKey;
+  descKey: ExpertiseCopyKey;
+  Icon: LucideIcon;
+  barClass: string;
+  iconBoxClass: string;
+  iconClass: string;
+};
+
+const EXPERTISE_ITEMS = [
+  {
+    titleKey: "ai_title",
+    descKey: "ai_desc",
+    Icon: BrainCircuit,
+    barClass: "bg-blue-600",
+    iconBoxClass: "bg-blue-50",
+    iconClass: "text-blue-600",
+  },
+  {
+    titleKey: "fintech_title",
+    descKey: "fintech_desc",
+    Icon: Landmark,
+    barClass: "bg-violet-600",
+    iconBoxClass: "bg-violet-50",
+    iconClass: "text-violet-600",
+  },
+  {
+    titleKey: "cloud_title",
+    descKey: "cloud_desc",
+    Icon: Cloud,
+    barClass: "bg-cyan-600",
+    iconBoxClass: "bg-cyan-50",
+    iconClass: "text-cyan-600",
+  },
+  {
+    titleKey: "security_title",
+    descKey: "security_desc",
+    Icon: ShieldCheck,
+    barClass: "bg-emerald-600",
+    iconBoxClass: "bg-emerald-50",
+    iconClass: "text-emerald-600",
+  },
+  {
+    titleKey: "leadership_title",
+    descKey: "leadership_desc",
+    Icon: Users,
+    barClass: "bg-amber-600",
+    iconBoxClass: "bg-amber-50",
+    iconClass: "text-amber-600",
+  },
+  {
+    titleKey: "digital_title",
+    descKey: "digital_desc",
+    Icon: Rocket,
+    barClass: "bg-red-600",
+    iconBoxClass: "bg-red-50",
+    iconClass: "text-red-600",
+  },
+] satisfies ExpertiseItem[];
 
 export default function Expertise() {
   const { t } = useLang();
   const e = t.expertise;
-  const [mounted, setMounted] = useState(false);
-  const prefersReduced = useReducedMotion();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <section id="expertise" className="py-20 md:py-24 bg-slate-50 border-y border-slate-200/80 px-6 min-h-[500px]" />
-    );
-  }
-
-  const cards = [
-    { title: e.ai_title, desc: e.ai_desc },
-    { title: e.fintech_title, desc: e.fintech_desc },
-    { title: e.cloud_title, desc: e.cloud_desc },
-    { title: e.security_title, desc: e.security_desc },
-    { title: e.leadership_title, desc: e.leadership_desc },
-    { title: e.digital_title, desc: e.digital_desc },
-  ];
 
   return (
     <section
@@ -40,58 +80,40 @@ export default function Expertise() {
       <div className="max-w-5xl mx-auto">
         
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: prefersReduced ? 0 : 0.5 }}
-          className="mb-12"
-        >
-          <span className="text-xs font-bold tracking-widest uppercase text-blue-600 block mb-2">
-            {e.label}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            {e.title}
-          </h2>
-        </motion.div>
+        <Reveal duration={0.5} className="mb-12">
+          <SectionHeader label={e.label} title={e.title} className="mb-0" />
+        </Reveal>
 
         {/* Expertise Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cards.map((c, i) => {
-            const Icon = ICONS[i];
-            const accentColor = ACCENTS[i % ACCENTS.length];
+          {EXPERTISE_ITEMS.map(({ titleKey, descKey, Icon, barClass, iconBoxClass, iconClass }, i) => {
+            const title = e[titleKey];
+            const desc = e[descKey];
 
             return (
-              <motion.div
-                key={c.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: prefersReduced ? 0 : 0.4, delay: prefersReduced ? 0 : i * 0.05 }}
+              <Reveal
+                key={titleKey}
+                duration={0.4}
+                delay={Math.min(i * 0.05, 0.3)}
+                margin="-50px"
                 className="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden transition-all duration-300 hover:shadow-premium hover:-translate-y-1"
               >
                 {/* Border-top decoration */}
-                <div
-                  className="absolute top-0 inset-x-0 h-1.5"
-                  style={{ backgroundColor: accentColor }}
-                />
+                <div className={`absolute top-0 inset-x-0 h-1.5 ${barClass}`} />
 
                 {/* Icon Box */}
-                <div
-                  className="inline-flex items-center justify-center p-3 rounded-xl mb-4 mt-2"
-                  style={{ backgroundColor: `${accentColor}10` }}
-                >
-                  <Icon size={22} style={{ color: accentColor }} />
+                <div className={`inline-flex items-center justify-center p-3 rounded-xl mb-4 mt-2 ${iconBoxClass}`}>
+                  <Icon size={22} className={iconClass} />
                 </div>
 
                 {/* Titles & Description */}
                 <h3 className="text-base font-bold text-slate-900 mb-2.5 tracking-tight">
-                  {c.title}
+                  {title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                  {c.desc}
+                  {desc}
                 </p>
-              </motion.div>
+              </Reveal>
             );
           })}
         </div>

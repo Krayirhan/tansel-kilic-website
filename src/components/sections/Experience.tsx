@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
-import { motion, useReducedMotion } from "framer-motion";
-import { experiences } from "@/lib/data";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { experiences, currentDuration } from "@/lib/data";
 
 const FULL_COUNT = 6;
 
@@ -19,18 +19,6 @@ export default function Experience() {
   const { locale, t } = useLang();
   const isTr = locale === "tr";
   const e = t.experience;
-  const [mounted, setMounted] = useState(false);
-  const prefersReduced = useReducedMotion();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <section id="experience" className="py-20 md:py-24 bg-white px-6 min-h-[600px]" />
-    );
-  }
 
   const full    = experiences.slice(0, FULL_COUNT);
   const earlier = experiences.slice(FULL_COUNT);
@@ -40,20 +28,9 @@ export default function Experience() {
       <div className="max-w-5xl mx-auto">
         
         {/* Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: prefersReduced ? 0 : 0.5 }}
-          className="mb-12"
-        >
-          <span className="text-xs font-bold tracking-widest uppercase text-blue-600 block mb-2">
-            {e.label}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            {e.title}
-          </h2>
-        </motion.div>
+        <Reveal duration={0.5} className="mb-12">
+          <SectionHeader label={e.label} title={e.title} className="mb-0" />
+        </Reveal>
 
         {/* Timeline content */}
         <div className="relative pl-8 md:pl-10">
@@ -63,16 +40,15 @@ export default function Experience() {
           {full.map((exp, i) => {
             const c = PALETTE[i % PALETTE.length];
             return (
-              <motion.div
+              <Reveal
                 key={exp.company + exp.date_en}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: prefersReduced ? 0 : 0.4, delay: prefersReduced ? 0 : i * 0.05 }}
+                duration={0.4}
+                delay={Math.min(i * 0.05, 0.3)}
                 className="relative pb-10 last:pb-0"
               >
                 {/* Timeline node dot */}
                 <div
+                  aria-hidden="true"
                   className="absolute -left-[2.35rem] top-5 w-3 h-3 rounded-full z-10 border-2"
                   style={{
                     backgroundColor: exp.current ? c.dot : "#ffffff",
@@ -101,6 +77,11 @@ export default function Experience() {
                     </div>
                     <div className="text-xs font-semibold text-slate-400 sm:pt-1 whitespace-nowrap">
                       {isTr ? exp.date_tr : exp.date_en}
+                      {exp.current && exp.start_date && (
+                        <span className="ml-1 text-slate-300">
+                          · {currentDuration(exp.start_date, isTr ? "tr" : "en")}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -126,7 +107,7 @@ export default function Experience() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </Reveal>
             );
           })}
         </div>
@@ -143,16 +124,14 @@ export default function Experience() {
               <div className="absolute left-1.5 top-0 bottom-4 w-[1px] bg-slate-200" />
               
               {earlier.map((exp, i) => (
-                <motion.div
+                <Reveal
                   key={exp.company + exp.date_en}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReduced ? 0 : 0.3, delay: prefersReduced ? 0 : i * 0.03 }}
+                  duration={0.3}
+                  delay={Math.min(i * 0.03, 0.3)}
                   className="relative pb-6 last:pb-0"
                 >
                   {/* Compact list bullet */}
-                  <div className="absolute -left-[2.18rem] top-2.5 w-2 h-2 rounded-full bg-white border border-slate-300" />
+                  <div aria-hidden="true" className="absolute -left-[2.18rem] top-2.5 w-2 h-2 rounded-full bg-white border border-slate-300" />
                   
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-slate-200 pb-4">
                     <div className="flex flex-wrap items-baseline gap-2">
@@ -167,7 +146,7 @@ export default function Experience() {
                       {isTr ? exp.date_tr : exp.date_en}
                     </span>
                   </div>
-                </motion.div>
+                </Reveal>
               ))}
             </div>
           </div>

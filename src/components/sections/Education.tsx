@@ -1,30 +1,51 @@
 "use client";
-import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
-import { motion, useReducedMotion } from "framer-motion";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { GraduationCap } from "lucide-react";
+import type { Messages } from "@/lib/i18n";
+
+type EducationCopyKey = keyof Messages["education"];
+
+type EducationItem = {
+  titleKey: EducationCopyKey;
+  subKey: EducationCopyKey;
+  dateKey: EducationCopyKey;
+  cardClass: string;
+  iconBoxClass: string;
+  iconClass: string;
+};
+
+const EDUCATION_ITEMS = [
+  {
+    titleKey: "edu1_title",
+    subKey: "edu1_sub",
+    dateKey: "edu1_date",
+    cardClass: "border-t-4 border-t-blue-600",
+    iconBoxClass: "bg-blue-50",
+    iconClass: "text-blue-600",
+  },
+  {
+    titleKey: "edu2_title",
+    subKey: "edu2_sub",
+    dateKey: "edu2_date",
+    cardClass: "border-t-4 border-t-violet-600",
+    iconBoxClass: "bg-violet-50",
+    iconClass: "text-violet-600",
+  },
+  {
+    titleKey: "edu3_title",
+    subKey: "edu3_sub",
+    dateKey: "edu3_date",
+    cardClass: "border-t-4 border-t-emerald-600",
+    iconBoxClass: "bg-emerald-50",
+    iconClass: "text-emerald-600",
+  },
+] satisfies EducationItem[];
 
 export default function Education() {
   const { t } = useLang();
   const e = t.education;
-  const [mounted, setMounted] = useState(false);
-  const prefersReduced = useReducedMotion();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <section id="education" className="py-20 md:py-24 bg-white border-b border-slate-200/80 px-6 min-h-[400px]" />
-    );
-  }
-
-  const cards = [
-    { title: e.edu1_title, sub: e.edu1_sub, date: e.edu1_date, accent: "#2563eb" },
-    { title: e.edu2_title, sub: e.edu2_sub, date: e.edu2_date, accent: "#7c3aed" },
-    { title: e.edu3_title, sub: e.edu3_sub, date: e.edu3_date, accent: "#059669" },
-  ];
 
   return (
     <section
@@ -34,51 +55,35 @@ export default function Education() {
       <div className="max-w-5xl mx-auto">
         
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: prefersReduced ? 0 : 0.5 }}
-          className="mb-12"
-        >
-          <span className="text-xs font-bold tracking-widest uppercase text-blue-600 block mb-2">
-            {e.label}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            {e.title}
-          </h2>
-        </motion.div>
+        <Reveal duration={0.5} className="mb-12">
+          <SectionHeader label={e.label} title={e.title} className="mb-0" />
+        </Reveal>
 
         {/* Education Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cards.map((c, i) => (
-            <motion.div
-              key={c.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: prefersReduced ? 0 : 0.4, delay: prefersReduced ? 0 : i * 0.05 }}
-              className="bg-slate-50 border border-slate-200/90 rounded-2xl p-6 flex gap-4 items-start transition-all duration-300 hover:shadow-premium hover:bg-white hover:border-slate-300"
-              style={{ borderTopWidth: "4px", borderTopColor: c.accent }}
+          {EDUCATION_ITEMS.map(({ titleKey, subKey, dateKey, cardClass, iconBoxClass, iconClass }, i) => (
+            <Reveal
+              key={titleKey}
+              duration={0.4}
+              delay={Math.min(i * 0.05, 0.3)}
+              margin="-50px"
+              className={`bg-slate-50 border border-slate-200/90 rounded-2xl p-6 flex gap-4 items-start transition-all duration-300 hover:shadow-premium hover:bg-white hover:border-slate-300 ${cardClass}`}
             >
-              <div
-                className="p-2 rounded-lg flex-shrink-0"
-                style={{ backgroundColor: `${c.accent}10` }}
-              >
-                <GraduationCap size={20} style={{ color: c.accent }} />
+              <div className={`p-2 rounded-lg flex-shrink-0 ${iconBoxClass}`}>
+                <GraduationCap size={20} className={iconClass} />
               </div>
               <div>
                 <h3 className="font-bold text-sm text-slate-900 mb-1 leading-snug">
-                  {c.title}
+                  {e[titleKey]}
                 </h3>
                 <div className="text-xs text-slate-500 leading-relaxed">
-                  {c.sub}
+                  {e[subKey]}
                 </div>
                 <div className="text-[10px] font-bold text-slate-400 mt-2 tracking-wider">
-                  {c.date}
+                  {e[dateKey]}
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

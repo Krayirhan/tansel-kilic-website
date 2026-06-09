@@ -1,6 +1,7 @@
 export type Experience = {
   date_en: string;
   date_tr: string;
+  start_date?: string; // ISO date string, used to compute duration for current roles
   role_en: string;
   role_tr?: string;
   company: string;
@@ -11,11 +12,31 @@ export type Experience = {
   current?: boolean;
 };
 
+export function currentDuration(startDate: string, locale: "en" | "tr"): string {
+  const start = new Date(startDate);
+  const now = new Date();
+  const months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    (now.getMonth() - start.getMonth());
+  const years = Math.floor(months / 12);
+  const rem = months % 12;
+
+  if (locale === "tr") {
+    if (years === 0) return `${months} ay`;
+    if (rem === 0) return `${years} yıl`;
+    return `${years} yıl ${rem} ay`;
+  }
+  if (years === 0) return `${months} month${months !== 1 ? "s" : ""}`;
+  if (rem === 0) return `${years} year${years !== 1 ? "s" : ""}`;
+  return `${years} yr ${rem} mo`;
+}
+
 export const experiences: Experience[] = [
   {
     current: true,
-    date_en: "Jan 2026 — Present · 6 months",
-    date_tr: "Oca 2026 — Devam ediyor · 6 ay",
+    start_date: "2026-01-01",
+    date_en: "Jan 2026 — Present",
+    date_tr: "Oca 2026 — Devam ediyor",
     role_en: "AI & Digital Transformation Executive · Ex-CTO · Fractional CTO",
     role_tr: "AI & Dijital Dönüşüm Yöneticisi · Ex-CTO · Fractional CTO",
     company: "Self-Employed — İstanbul",
