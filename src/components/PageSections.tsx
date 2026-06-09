@@ -1,5 +1,3 @@
-"use client";
-
 import Hero from "@/components/sections/Hero";
 import ImpactMetrics from "@/components/sections/ImpactMetrics";
 import About from "@/components/sections/About";
@@ -16,8 +14,8 @@ export default function PageSections() {
       <ImpactMetrics />
       <About />
       <Experience />
-      <Education />
       <Expertise />
+      <Education />
       <ResponsibleAI />
       <Contact />
     </main>

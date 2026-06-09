@@ -7,13 +7,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter" });
 
 const description =
-  "Fintech, e-ticaret ve dijital ekosistemlerde 20+ yıllık deneyimle büyük ölçekli platformları, mühendislik organizasyonlarını ve AI dönüşüm girişimlerini yöneten teknoloji yöneticisi.";
+  "Technology executive with 20+ years leading large-scale platforms, engineering organizations, and AI transformation initiatives across fintech, e-commerce, and digital ecosystems.";
 
 export const metadata: Metadata = {
-  title: "Tansel KILIÇ — Teknoloji Lideri & AI Yöneticisi",
+  title: "Tansel KILIÇ — Technology Leader & AI Executive",
   description,
   openGraph: {
-    title: "Tansel KILIÇ — Teknoloji Lideri & AI Yöneticisi",
+    title: "Tansel KILIÇ — Technology Leader & AI Executive",
     description,
     url: SITE_URL,
     siteName: "Tansel KILIÇ",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tansel KILIÇ — Teknoloji Lideri & AI Yöneticisi",
+    title: "Tansel KILIÇ — Technology Leader & AI Executive",
     description,
     images: [`${SITE_URL}/og-image.png`],
   },
@@ -46,7 +46,7 @@ const jsonLd = {
   mainEntity: {
     "@type": "Person",
     name: "Tansel KILIÇ",
-    jobTitle: "Technology Leader & AI Executive",
+    jobTitle: "Technology Leader & AI Executive / Teknoloji Lideri & AI Yöneticisi",
     url: SITE_URL,
     email: EMAIL,
     sameAs: [LINKEDIN_URL],
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={inter.variable}>
-        <LangProvider>{children}</LangProvider>
+        <LangProvider initialLocale="tr">{children}</LangProvider>
       </body>
     </html>
   );

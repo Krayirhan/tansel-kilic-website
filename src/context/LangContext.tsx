@@ -15,11 +15,25 @@ const LangContext = createContext<LangContextType>({
   setLocale: () => {},
 });
 
-export function LangProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("tr");
+type LangProviderProps = {
+  children: React.ReactNode;
+  initialLocale: Locale;
+};
+
+export function LangProvider({ children, initialLocale }: LangProviderProps) {
+  const [locale, setLocale] = useState<Locale>(initialLocale);
+
+  useEffect(() => {
+    const storedLocale = localStorage.getItem("locale");
+    if ((storedLocale === "en" || storedLocale === "tr") && storedLocale !== locale) {
+      setLocale(storedLocale);
+    }
+  }, [locale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
+    localStorage.setItem("locale", locale);
+    document.cookie = `locale=${locale}; path=/; max-age=31536000; samesite=lax`;
   }, [locale]);
 
   return (
