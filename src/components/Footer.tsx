@@ -1,23 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { Mail } from "lucide-react";
 import { useLang } from "@/context/LangContext";
-import { Mail, ArrowUp } from "lucide-react";
 import LinkedInIcon from "@/components/ui/LinkedInIcon";
+import ScrollTopButton from "@/components/ui/ScrollTopButton";
 import { LINKEDIN_URL, EMAIL } from "@/lib/config";
 
 export default function Footer() {
   const { t } = useLang();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <footer className="bg-white border-t border-slate-200/80 py-8 px-6 min-h-16" />
-    );
-  }
 
   return (
     <footer className="bg-white border-t border-slate-200/80 py-8 px-6">
@@ -35,24 +25,18 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 text-slate-500 hover:text-slate-950 hover:bg-slate-100 transition-colors"
-            aria-label="LinkedIn Profile"
+            aria-label={t.ui.linkedin_profile_aria_label}
           >
             <LinkedInIcon size={15} />
           </a>
           <a
             href={`mailto:${EMAIL}`}
             className="flex items-center justify-center w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 text-slate-500 hover:text-slate-950 hover:bg-slate-100 transition-colors"
-            aria-label="Email Address"
+            aria-label={t.ui.email_address_aria_label}
           >
             <Mail size={16} />
           </a>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center justify-center w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 text-slate-500 hover:text-slate-950 hover:bg-slate-100 transition-colors"
-            aria-label="Yukarı Çık"
-          >
-            <ArrowUp size={16} />
-          </button>
+          <ScrollTopButton ariaLabel={t.footer_scroll_top} />
         </div>
       </div>
     </footer>
