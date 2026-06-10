@@ -17,7 +17,7 @@ export default function LanguageSwitcher({
 }: LanguageSwitcherProps) {
   return (
     <div
-      className="flex items-center bg-slate-100 border border-slate-200/60 rounded-full p-1"
+      className="flex items-center rounded-full border border-stone-200 bg-white/80 p-1"
       role="group"
       aria-label={ariaLabel}
     >
@@ -25,9 +25,9 @@ export default function LanguageSwitcher({
         <button
           key={lang}
           onClick={() => onChange(lang)}
-          className={`rounded-full px-4 py-1 text-xs font-bold tracking-wider transition-all duration-200 uppercase ${
+          className={`rounded-full px-4 py-1 text-xs font-bold uppercase tracking-[0.14em] transition-all duration-200 ${
             locale === lang
-              ? "bg-blue-600 text-white shadow-sm"
+              ? "bg-[var(--color-accent)] text-white"
               : "text-slate-500 hover:text-slate-900"
           }`}
           aria-label={optionLabels[lang]}

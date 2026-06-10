@@ -1,9 +1,8 @@
 "use client";
+
 import { useLang } from "@/context/LangContext";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { BrainCircuit, Landmark, Cloud, ShieldCheck, Users, Rocket } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import type { Messages } from "@/lib/i18n";
 
 type ExpertiseCopyKey = keyof Messages["expertise"];
@@ -11,118 +10,75 @@ type ExpertiseCopyKey = keyof Messages["expertise"];
 type ExpertiseItem = {
   titleKey: ExpertiseCopyKey;
   descKey: ExpertiseCopyKey;
-  Icon: LucideIcon;
-  barClass: string;
-  iconBoxClass: string;
-  iconClass: string;
-  cardClass: string;
+};
+
+type ExpertiseGroupKey = "group_core" | "group_systems" | "group_leadership";
+
+type ExpertiseGroup = {
+  titleKey: ExpertiseGroupKey;
+  items: [ExpertiseItem, ExpertiseItem];
 };
 
 const EXPERTISE_ITEMS = [
-  {
-    titleKey: "ai_title",
-    descKey: "ai_desc",
-    Icon: BrainCircuit,
-    barClass: "bg-blue-950",
-    iconBoxClass: "bg-blue-50",
-    iconClass: "text-blue-900",
-    cardClass: "hover:border-blue-200",
-  },
-  {
-    titleKey: "fintech_title",
-    descKey: "fintech_desc",
-    Icon: Landmark,
-    barClass: "bg-teal-700",
-    iconBoxClass: "bg-teal-50",
-    iconClass: "text-teal-700",
-    cardClass: "hover:border-teal-200",
-  },
-  {
-    titleKey: "cloud_title",
-    descKey: "cloud_desc",
-    Icon: Cloud,
-    barClass: "bg-sky-700",
-    iconBoxClass: "bg-sky-50",
-    iconClass: "text-sky-700",
-    cardClass: "hover:border-sky-200",
-  },
-  {
-    titleKey: "security_title",
-    descKey: "security_desc",
-    Icon: ShieldCheck,
-    barClass: "bg-slate-800",
-    iconBoxClass: "bg-slate-100",
-    iconClass: "text-slate-800",
-    cardClass: "hover:border-slate-300",
-  },
-  {
-    titleKey: "leadership_title",
-    descKey: "leadership_desc",
-    Icon: Users,
-    barClass: "bg-amber-700",
-    iconBoxClass: "bg-amber-50",
-    iconClass: "text-amber-700",
-    cardClass: "hover:border-amber-200",
-  },
-  {
-    titleKey: "digital_title",
-    descKey: "digital_desc",
-    Icon: Rocket,
-    barClass: "bg-blue-700",
-    iconBoxClass: "bg-blue-50",
-    iconClass: "text-blue-700",
-    cardClass: "hover:border-blue-200",
-  },
+  { titleKey: "ai_title", descKey: "ai_desc" },
+  { titleKey: "fintech_title", descKey: "fintech_desc" },
+  { titleKey: "cloud_title", descKey: "cloud_desc" },
+  { titleKey: "security_title", descKey: "security_desc" },
+  { titleKey: "leadership_title", descKey: "leadership_desc" },
+  { titleKey: "digital_title", descKey: "digital_desc" },
 ] satisfies ExpertiseItem[];
+
+const EXPERTISE_GROUPS: ExpertiseGroup[] = [
+  { titleKey: "group_core", items: [EXPERTISE_ITEMS[0], EXPERTISE_ITEMS[1]] },
+  { titleKey: "group_systems", items: [EXPERTISE_ITEMS[2], EXPERTISE_ITEMS[3]] },
+  { titleKey: "group_leadership", items: [EXPERTISE_ITEMS[4], EXPERTISE_ITEMS[5]] },
+];
 
 export default function Expertise() {
   const { t } = useLang();
   const e = t.expertise;
+  const expertiseCopy = e as Record<string, string>;
 
   return (
-    <section
-      id="expertise"
-      className="py-16 md:py-28 bg-white px-6"
-    >
-      <div className="max-w-6xl mx-auto">
-        <Reveal duration={0.5} className="mb-12">
+    <section id="expertise" className="bg-[var(--color-paper)] px-6 py-14 md:py-24">
+      <div className="section-shell">
+        <Reveal duration={0.5} className="mb-10">
           <SectionHeader
-            label={e.label}
             title={e.title}
             description={e.subtitle}
             className="mb-0"
-            descriptionClassName="text-slate-500 leading-relaxed text-base max-w-2xl mt-4"
+            descriptionClassName="mt-4 max-w-2xl text-base leading-relaxed text-slate-500"
           />
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {EXPERTISE_ITEMS.map(({ titleKey, descKey, Icon, barClass, iconBoxClass, iconClass, cardClass }, i) => {
-            const title = e[titleKey];
-            const desc = e[descKey];
-
-            return (
+        <div className="border-t border-stone-200">
+          <div className="grid grid-cols-1 gap-0">
+            {EXPERTISE_GROUPS.map((group, i) => (
               <Reveal
-                key={titleKey}
-                duration={0.4}
-                delay={Math.min(i * 0.05, 0.3)}
-                margin="-50px"
-                className={`bg-slate-50/70 border border-slate-200 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:bg-white hover:shadow-premium-hover hover:-translate-y-1 ${cardClass}`}
+                key={group.titleKey}
+                duration={0.35}
+                delay={Math.min(i * 0.05, 0.2)}
+                className="border-b border-stone-200 py-5 last:border-b-0 last:pb-0 first:pt-0"
               >
-                <div className={`absolute top-0 inset-x-0 h-1.5 ${barClass}`} />
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.18fr_0.82fr] lg:gap-8">
+                  <div className="pt-1 text-[11px] font-bold uppercase tracking-[0.26em] text-slate-400">
+                    {expertiseCopy[group.titleKey]}
+                  </div>
 
-                <div className={`inline-flex items-center justify-center p-3 rounded-xl mb-4 mt-2 ${iconBoxClass}`}>
-                  <Icon size={22} className={iconClass} />
+                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    {group.items.map((item) => (
+                      <article key={item.titleKey}>
+                        <h3 className="mb-2 text-lg font-semibold tracking-[-0.02em] text-slate-950">
+                          {e[item.titleKey]}
+                        </h3>
+                        <p className="text-sm leading-6 text-slate-600">{e[item.descKey]}</p>
+                      </article>
+                    ))}
+                  </div>
                 </div>
-
-                <h3 className="text-lg font-bold text-slate-950 mb-3 tracking-tight">
-                  {title}
-                </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  {desc}
-                </p>
               </Reveal>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>

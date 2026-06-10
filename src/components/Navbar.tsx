@@ -31,25 +31,25 @@ export default function Navbar() {
     <header
       className={`fixed top-0 inset-x-0 z-50 h-16 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm"
-          : "bg-white/50 backdrop-blur-md border-b border-transparent"
+          ? "border-b border-stone-200/80 bg-[rgba(247,244,238,0.96)] backdrop-blur-md"
+          : "border-b border-transparent bg-[rgba(247,244,238,0.82)] backdrop-blur-md"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+      <div className="section-shell flex h-full items-center justify-between px-6">
         <Link
           href="/"
-          className="shrink-0 whitespace-nowrap font-extrabold text-lg tracking-tight text-slate-900 transition-colors hover:text-blue-600"
+          className="shrink-0 whitespace-nowrap text-[1.02rem] font-semibold tracking-[-0.04em] text-slate-950 transition-colors hover:text-[var(--color-accent)]"
           aria-label={t.ui.home_aria_label}
         >
           {t.hero.name}
         </Link>
 
-        <nav className="hidden md:flex items-center gap-5 lg:gap-8">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7">
           {links.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
-              className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors duration-200 whitespace-nowrap"
+              className="whitespace-nowrap text-[0.92rem] font-medium text-slate-500 transition-colors duration-200 hover:text-slate-900"
             >
               {link.label}
             </a>

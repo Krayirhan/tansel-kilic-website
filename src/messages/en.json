@@ -112,7 +112,10 @@
     "leadership_title": "Engineering Leadership",
     "leadership_desc": "Growing teams 3x, managing 50+ engineers across BE, FE, QA, DevOps. Agile at scale — Scrum, Kanban, OKRs.",
     "digital_title": "Digital Transformation",
-    "digital_desc": "E-commerce, media, betting, hospitality — turning legacy systems into modern, scalable digital platforms."
+    "digital_desc": "E-commerce, media, betting, hospitality — turning legacy systems into modern, scalable digital platforms.",
+    "group_core": "Core",
+    "group_systems": "Systems",
+    "group_leadership": "Leadership"
   },
   "contact": {
     "label": "Contact",

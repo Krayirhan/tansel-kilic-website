@@ -9,28 +9,12 @@ type ImpactMetricItem = {
   valueKey: ImpactCopyKey;
   labelKey: ImpactCopyKey;
   subKey: ImpactCopyKey;
-  valueClass: string;
 };
 
 const IMPACT_METRICS = [
-  {
-    valueKey: "stat1_value",
-    labelKey: "stat1_label",
-    subKey: "stat1_sub",
-    valueClass: "text-blue-950",
-  },
-  {
-    valueKey: "stat2_value",
-    labelKey: "stat2_label",
-    subKey: "stat2_sub",
-    valueClass: "text-teal-700",
-  },
-  {
-    valueKey: "stat3_value",
-    labelKey: "stat3_label",
-    subKey: "stat3_sub",
-    valueClass: "text-amber-700",
-  },
+  { valueKey: "stat1_value", labelKey: "stat1_label", subKey: "stat1_sub" },
+  { valueKey: "stat2_value", labelKey: "stat2_label", subKey: "stat2_sub" },
+  { valueKey: "stat3_value", labelKey: "stat3_label", subKey: "stat3_sub" },
 ] satisfies ImpactMetricItem[];
 
 export default function ImpactMetrics() {
@@ -38,23 +22,29 @@ export default function ImpactMetrics() {
   const m = t.impact;
 
   return (
-    <section id="impact" aria-label={m.label} className="py-10 md:py-14 bg-white border-y border-slate-200/70 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="impact" aria-label={m.label} className="bg-white px-6 pb-7 pt-1 md:pb-8">
+      <div className="section-shell">
         <h2 className="sr-only">{m.label}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {IMPACT_METRICS.map(({ valueKey, labelKey, subKey, valueClass }, i) => (
+        <div className="grid grid-cols-1 gap-0 border-y border-stone-200 sm:grid-cols-3">
+          {IMPACT_METRICS.map(({ valueKey, labelKey, subKey }, i) => (
             <Reveal
               key={valueKey}
-              delay={i * 0.1}
-              duration={0.45}
+              delay={Math.min(i * 0.06, 0.18)}
+              duration={0.35}
               margin="-80px"
-              className="group rounded-3xl border border-slate-200 bg-slate-50/80 p-6 transition-all duration-300 hover:bg-white hover:shadow-premium"
+              className={`px-4 py-3 md:px-5 md:py-4 ${i > 0 ? "border-t border-stone-200 sm:border-l sm:border-t-0" : ""}`}
             >
-              <div className={`text-5xl md:text-6xl font-bold tracking-tight leading-none mb-4 ${valueClass}`}>
-                {m[valueKey]}
+              <div className="flex items-baseline gap-2">
+                <div className="text-3xl font-semibold leading-none tracking-[-0.05em] text-slate-950 md:text-[2.35rem]">
+                  {m[valueKey]}
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                    {m[labelKey]}
+                  </div>
+                  <div className="mt-0.5 text-sm leading-5 text-slate-600">{m[subKey]}</div>
+                </div>
               </div>
-              <div className="text-base font-bold text-slate-950 mb-1">{m[labelKey]}</div>
-              <div className="text-xs font-semibold text-slate-500 leading-relaxed">{m[subKey]}</div>
             </Reveal>
           ))}
         </div>

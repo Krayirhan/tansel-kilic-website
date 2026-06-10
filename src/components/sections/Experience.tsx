@@ -7,87 +7,96 @@ import { currentDuration, experiences } from "@/lib/data";
 
 const FULL_COUNT = 6;
 
-const PALETTE = [
-  { dot: "#1e3a8a", tagBg: "#eff6ff", tagText: "#1e3a8a", tagBorder: "#bfdbfe" },
-  { dot: "#0f766e", tagBg: "#f0fdfa", tagText: "#0f766e", tagBorder: "#99f6e4" },
-  { dot: "#0369a1", tagBg: "#f0f9ff", tagText: "#0369a1", tagBorder: "#bae6fd" },
-  { dot: "#334155", tagBg: "#f8fafc", tagText: "#334155", tagBorder: "#cbd5e1" },
-  { dot: "#b45309", tagBg: "#fffbeb", tagText: "#b45309", tagBorder: "#fde68a" },
-  { dot: "#1d4ed8", tagBg: "#eff6ff", tagText: "#1d4ed8", tagBorder: "#bfdbfe" },
-];
-
 export default function Experience() {
   const { locale, t } = useLang();
   const isTr = locale === "tr";
   const e = t.experience;
 
   const full = experiences.slice(0, FULL_COUNT);
+  const featured = full[0];
+  const selected = full.slice(1);
   const earlier = experiences.slice(FULL_COUNT);
 
   return (
-    <section id="experience" className="py-16 md:py-28 bg-slate-50 border-y border-slate-200/80 px-6">
-      <div className="max-w-6xl mx-auto">
-        <Reveal duration={0.5} className="mb-12">
+    <section id="experience" className="bg-white px-6 py-14 md:py-20">
+      <div className="section-shell">
+        <Reveal duration={0.5} className="mb-8">
           <SectionHeader
-            label={e.label}
             title={e.title}
             description={e.subtitle}
             className="mb-0"
-            descriptionClassName="text-slate-500 leading-relaxed text-base max-w-2xl mt-4"
+            descriptionClassName="mt-3 max-w-2xl text-sm leading-7 text-slate-500 md:text-base"
           />
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {full.map((exp, i) => {
-            const c = PALETTE[i % PALETTE.length];
-            return (
+        <div className="grid grid-cols-1 gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:gap-9">
+          {featured ? (
+            <Reveal duration={0.45}>
+              <article className="border-l-[3px] border-[var(--color-accent)] pl-5 md:pl-6">
+                <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.26em] text-slate-500">
+                  {featured.company}
+                </div>
+
+                <h3 className="max-w-xl text-[1.7rem] font-semibold leading-[1.06] tracking-[-0.045em] text-slate-950 md:text-[2rem]">
+                  {isTr && featured.role_tr ? featured.role_tr : featured.role_en}
+                </h3>
+
+                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+                  <span>{isTr ? featured.date_tr : featured.date_en}</span>
+                  {featured.current && featured.start_date ? (
+                    <span>{currentDuration(featured.start_date, isTr ? "tr" : "en")}</span>
+                  ) : null}
+                </div>
+
+                <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 md:text-[0.97rem]">
+                  {isTr ? featured.desc_tr : featured.desc_en}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {(isTr ? featured.tags_tr : featured.tags).slice(0, 5).map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-[11px] font-bold text-slate-600"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </Reveal>
+          ) : null}
+
+          <div className="border-t border-stone-200 lg:border-t-0 lg:border-l lg:border-stone-200 lg:pl-8">
+            {selected.map((exp, i) => (
               <Reveal
                 key={exp.company + exp.date_en}
-                duration={0.4}
-                delay={Math.min(i * 0.05, 0.3)}
-                className="h-full"
+                duration={0.35}
+                delay={Math.min(i * 0.04, 0.2)}
+                className="border-b border-stone-200 py-5 first:pt-0 last:border-b-0 last:pb-0"
               >
-                <article
-                  className="h-full bg-white border border-slate-200/90 rounded-3xl p-6 md:p-7 transition-all duration-300 hover:shadow-premium-hover hover:-translate-y-1"
-                  style={{ borderTopWidth: "4px", borderTopColor: c.dot }}
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-5">
-                    <div>
-                      <div
-                        className="text-xs font-bold tracking-[0.18em] uppercase mb-2"
-                        style={{ color: c.dot }}
-                      >
-                        {exp.company}
-                      </div>
-                      <h3 className="text-lg md:text-xl font-bold text-slate-950 tracking-tight leading-snug">
-                        {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
-                      </h3>
-                    </div>
-                    <div className="rounded-full bg-slate-50 border border-slate-200 px-3 py-1 text-[11px] font-bold text-slate-500 whitespace-nowrap">
+                <article>
+                  <div className="mb-2 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+                    <h3 className="text-lg font-semibold leading-snug tracking-[-0.02em] text-slate-950">
+                      {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
+                    </h3>
+                    <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
                       {isTr ? exp.date_tr : exp.date_en}
                     </div>
                   </div>
 
-                  {exp.current && exp.start_date ? (
-                    <div className="inline-flex items-center rounded-full bg-teal-50 border border-teal-100 px-3 py-1 text-[11px] font-bold text-teal-700 mb-4">
-                      {currentDuration(exp.start_date, isTr ? "tr" : "en")}
-                    </div>
-                  ) : null}
+                  <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500">
+                    {exp.company}
+                  </div>
 
-                  <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                  <p className="max-w-2xl text-sm leading-6 text-slate-600">
                     {isTr ? exp.desc_tr : exp.desc_en}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {(isTr ? exp.tags_tr : exp.tags).map((tag) => (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {(isTr ? exp.tags_tr : exp.tags).slice(0, 4).map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full px-3 py-1 text-[11px] font-bold border transition-colors"
-                        style={{
-                          backgroundColor: c.tagBg,
-                          color: c.tagText,
-                          borderColor: c.tagBorder,
-                        }}
+                        className="rounded-full border border-stone-200 bg-white px-3 py-1 text-[11px] font-bold text-slate-600"
                       >
                         {tag}
                       </span>
@@ -95,34 +104,32 @@ export default function Experience() {
                   </div>
                 </article>
               </Reveal>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
         {earlier.length > 0 ? (
-          <div className="mt-12 rounded-3xl bg-white border border-slate-200 p-5 md:p-6">
-            <h3 className="text-[11px] font-bold tracking-widest uppercase text-slate-400 mb-5">
+          <div className="mt-10 border-t border-stone-200 pt-6">
+            <h3 className="mb-5 text-[11px] font-bold uppercase tracking-[0.26em] text-slate-400">
               {e.earlier}
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+            <div className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
               {earlier.map((exp, i) => (
                 <Reveal
                   key={exp.company + exp.date_en}
                   duration={0.3}
                   delay={Math.min(i * 0.03, 0.3)}
-                  className="border-b border-slate-200 py-4"
+                  className="border-b border-stone-200 py-3.5 last:border-b-0 md:last:border-b md:[&:nth-last-child(-n+2)]:border-b-0"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                    <div className="flex flex-wrap items-baseline gap-2">
-                      <span className="text-sm font-bold text-slate-900">
-                        {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
-                      </span>
-                      <span className="text-xs text-slate-400 font-semibold">
-                        · {exp.company}
-                      </span>
-                    </div>
-                    <span className="text-xs font-medium text-slate-400 whitespace-nowrap">
+                  <div className="flex flex-col gap-1.5">
+                    <span className="text-sm font-semibold text-slate-900">
+                      {isTr && exp.role_tr ? exp.role_tr : exp.role_en}
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      {exp.company}
+                    </span>
+                    <span className="text-xs font-medium text-slate-400">
                       {isTr ? exp.date_tr : exp.date_en}
                     </span>
                   </div>

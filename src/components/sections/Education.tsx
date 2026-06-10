@@ -11,9 +11,6 @@ type EducationItem = {
   titleKey: EducationCopyKey;
   subKey: EducationCopyKey;
   dateKey: EducationCopyKey;
-  cardClass: string;
-  iconBoxClass: string;
-  iconClass: string;
 };
 
 const EDUCATION_ITEMS = [
@@ -21,25 +18,16 @@ const EDUCATION_ITEMS = [
     titleKey: "edu1_title",
     subKey: "edu1_sub",
     dateKey: "edu1_date",
-    cardClass: "border-t-4 border-t-blue-950 md:col-span-3 lg:col-span-1",
-    iconBoxClass: "bg-blue-50",
-    iconClass: "text-blue-950",
   },
   {
     titleKey: "edu2_title",
     subKey: "edu2_sub",
     dateKey: "edu2_date",
-    cardClass: "border-t-4 border-t-teal-700 md:col-span-3 lg:col-span-1",
-    iconBoxClass: "bg-teal-50",
-    iconClass: "text-teal-700",
   },
   {
     titleKey: "edu3_title",
     subKey: "edu3_sub",
     dateKey: "edu3_date",
-    cardClass: "border-t-4 border-t-amber-700 md:col-span-3 lg:col-span-1",
-    iconBoxClass: "bg-amber-50",
-    iconClass: "text-amber-700",
   },
 ] satisfies EducationItem[];
 
@@ -48,44 +36,43 @@ export default function Education() {
   const e = t.education;
 
   return (
-    <section
-      id="education"
-      className="py-16 md:py-28 bg-slate-50 border-y border-slate-200/80 px-6"
-    >
-      <div className="max-w-6xl mx-auto">
-        <Reveal duration={0.5} className="mb-10 md:mb-12">
+    <section id="education" className="bg-[var(--color-paper)] px-6 py-14 md:py-22">
+      <div className="section-shell">
+        <Reveal duration={0.5} className="mb-10">
           <SectionHeader
-            label={e.label}
             title={e.title}
             description={e.subtitle}
             className="mb-0"
-            descriptionClassName="text-slate-500 leading-relaxed text-base mt-5 max-w-2xl"
+            descriptionClassName="mt-4 max-w-2xl text-base leading-relaxed text-slate-500"
           />
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          {EDUCATION_ITEMS.map(({ titleKey, subKey, dateKey, cardClass, iconBoxClass, iconClass }, i) => (
+        <div className="border-t border-stone-200">
+          {EDUCATION_ITEMS.map(({ titleKey, subKey, dateKey }, i) => (
             <Reveal
               key={titleKey}
-              duration={0.4}
-              delay={Math.min(i * 0.05, 0.3)}
+              duration={0.35}
+              delay={Math.min(i * 0.05, 0.2)}
               margin="-50px"
-              className={`bg-white border border-slate-200/90 rounded-3xl p-6 md:p-7 flex gap-4 items-start transition-all duration-300 shadow-sm hover:shadow-premium hover:-translate-y-1 hover:border-slate-300 ${cardClass}`}
+              className="border-b border-stone-200 py-5 last:border-b-0 last:pb-0 first:pt-0"
             >
-              <div className={`p-3 rounded-2xl flex-shrink-0 ${iconBoxClass}`}>
-                <GraduationCap size={21} className={iconClass} />
-              </div>
-              <div>
-                <h3 className="font-bold text-base text-slate-900 mb-1 leading-snug">
-                  {e[titleKey]}
-                </h3>
-                <div className="text-sm text-slate-500 leading-relaxed">
-                  {e[subKey]}
+              <article className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:gap-6">
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-stone-200 bg-white text-[var(--color-accent)]">
+                    <GraduationCap size={17} />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="mb-1 text-base font-semibold leading-snug text-slate-900">
+                      {e[titleKey]}
+                    </h3>
+                    <div className="text-sm leading-6 text-slate-600">{e[subKey]}</div>
+                  </div>
                 </div>
-                <div className="text-[11px] font-bold text-slate-400 mt-4 tracking-wider uppercase">
+
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 md:pt-1">
                   {e[dateKey]}
                 </div>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>

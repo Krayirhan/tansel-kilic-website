@@ -25,10 +25,13 @@ export function LangProvider({ children, initialLocale }: LangProviderProps) {
 
   useEffect(() => {
     const storedLocale = localStorage.getItem("locale");
-    if ((storedLocale === "en" || storedLocale === "tr") && storedLocale !== locale) {
+    if (
+      (storedLocale === "en" || storedLocale === "tr") &&
+      storedLocale !== initialLocale
+    ) {
       setLocale(storedLocale);
     }
-  }, [locale]);
+  }, [initialLocale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;

@@ -112,7 +112,10 @@
     "leadership_title": "Mühendislik Liderliği",
     "leadership_desc": "Ekipleri 3x büyütme, 50+ mühendis yönetimi. Ölçekli Agile — Scrum, Kanban, OKR.",
     "digital_title": "Dijital Dönüşüm",
-    "digital_desc": "E-ticaret, medya, bahis, konaklama — eski sistemleri modern, ölçeklenebilir dijital platformlara dönüştürme."
+    "digital_desc": "E-ticaret, medya, bahis, konaklama — eski sistemleri modern, ölçeklenebilir dijital platformlara dönüştürme.",
+    "group_core": "Temel Alanlar",
+    "group_systems": "Sistemler",
+    "group_leadership": "Liderlik"
   },
   "contact": {
     "label": "İletişim",

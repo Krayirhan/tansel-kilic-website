@@ -11,60 +11,47 @@ export default function About() {
   const a = t.about;
 
   return (
-    <section
-      id="about"
-      className="py-16 md:py-28 bg-slate-50 border-y border-slate-200/80 px-6"
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start">
-          <Reveal duration={0.5}>
-            <SectionHeader
-              label={a.label}
-              title={a.title}
-              description={a.subtitle}
-              className="mb-8"
-              descriptionClassName="text-slate-500 leading-relaxed text-base mt-5 max-w-xl"
-            />
+    <section id="about" className="bg-[var(--color-paper)] px-6 py-14 md:py-20">
+      <div className="section-shell">
+        <Reveal duration={0.5} className="mb-6">
+          <SectionHeader
+            title={a.title}
+            description={a.subtitle}
+            className="mb-0"
+            descriptionClassName="mt-4 max-w-2xl text-base leading-relaxed text-slate-500"
+          />
+        </Reveal>
 
-            <div className="rounded-3xl bg-blue-950 text-white p-6 md:p-7 shadow-premium">
-              <div className="text-xs font-bold tracking-[0.22em] uppercase text-blue-200 mb-4">
-                {a.deck_label}
-              </div>
-              <div className="text-2xl md:text-3xl font-semibold leading-tight mb-5">
+        <div className="grid grid-cols-1 gap-6 border-t border-stone-200 pt-5 lg:grid-cols-[0.72fr_0.28fr] lg:gap-8">
+          <div className="space-y-4">
+            <Reveal duration={0.4}>
+              <div className="max-w-3xl text-xl font-semibold leading-tight tracking-[-0.03em] text-slate-950 md:text-[1.45rem]">
                 {a.deck_title}
               </div>
-              <p className="text-sm leading-relaxed text-blue-100">
-                {a.deck_desc}
-              </p>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <div className="space-y-5">
-            <Reveal duration={0.45} className="rounded-3xl bg-white border border-slate-200 p-6 md:p-7 shadow-premium">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
+            <Reveal duration={0.45}>
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-8">
                 {ABOUT_PARAGRAPHS.map((key) => (
-                  <p key={key} className="text-slate-600 leading-relaxed text-base">
+                  <p key={key} className="text-[0.98rem] leading-7 text-slate-600">
                     {a[key]}
                   </p>
                 ))}
               </div>
             </Reveal>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="border-t border-stone-200 pt-5 lg:border-l lg:border-t-0 lg:border-stone-200 lg:pl-7 lg:pt-0">
+            <div className="space-y-3.5">
               {ABOUT_PRINCIPLES.map((key, index) => (
                 <Reveal
                   key={key}
                   duration={0.35}
                   delay={Math.min(index * 0.05, 0.2)}
                   margin="-60px"
-                  className="rounded-2xl bg-white border border-slate-200 p-5 transition-all duration-300 hover:shadow-premium hover:-translate-y-0.5"
+                  className="border-b border-stone-200 pb-3.5 last:border-b-0 last:pb-0"
                 >
-                  <div className="flex items-start gap-3">
-                    <span className="mt-1 w-2 h-2 rounded-full bg-teal-700 flex-shrink-0" />
-                    <div className="text-sm font-bold leading-snug text-slate-900">
-                      {a[key]}
-                    </div>
-                  </div>
+                  <div className="text-sm font-semibold leading-6 text-slate-700">{a[key]}</div>
                 </Reveal>
               ))}
             </div>
