@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -38,15 +39,28 @@ export default function Expertise() {
   const { t } = useLang();
   const e = t.expertise;
   const expertiseCopy = e as Record<string, string>;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section
+        id="expertise"
+        className="bg-[var(--color-paper)] px-6 py-14 md:py-20 min-h-[500px]"
+      />
+    );
+  }
 
   return (
-    <section id="expertise" className="bg-[var(--color-paper)] px-6 py-14 md:py-24">
+    <section id="expertise" className="bg-[var(--color-paper)] px-6 py-14 md:py-20">
       <div className="section-shell">
-        <Reveal duration={0.5} className="mb-10">
+        <Reveal duration={0.5}>
           <SectionHeader
             title={e.title}
             description={e.subtitle}
-            className="mb-0"
             descriptionClassName="mt-4 max-w-2xl text-base leading-relaxed text-slate-500"
           />
         </Reveal>
@@ -58,20 +72,24 @@ export default function Expertise() {
                 key={group.titleKey}
                 duration={0.35}
                 delay={Math.min(i * 0.05, 0.2)}
-                className="border-b border-stone-200 py-5 last:border-b-0 last:pb-0 first:pt-0"
+                className="border-b border-stone-200 py-4 last:border-b-0 last:pb-0 md:py-5 first:pt-0"
               >
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.18fr_0.82fr] lg:gap-8">
-                  <div className="pt-1 text-[11px] font-bold uppercase tracking-[0.26em] text-slate-400">
+                <div className="grid grid-cols-1 gap-3 lg:grid-cols-[0.18fr_0.82fr] lg:gap-8">
+                  <div className="pt-0.5 text-[11px] font-bold uppercase tracking-[0.26em] text-slate-400">
                     {expertiseCopy[group.titleKey]}
                   </div>
 
-                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    {group.items.map((item) => (
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+                    {group.items.map((item, itemIndex) => (
                       <article key={item.titleKey}>
-                        <h3 className="mb-2 text-lg font-semibold tracking-[-0.02em] text-slate-950">
+                        <h3 className="mb-1.5 text-base font-semibold tracking-[-0.02em] text-slate-950 md:mb-2 md:text-lg">
                           {e[item.titleKey]}
                         </h3>
-                        <p className="text-sm leading-6 text-slate-600">{e[item.descKey]}</p>
+                        <p
+                          className={`text-sm text-slate-600 ${itemIndex > 0 ? "hidden md:block md:leading-6" : "leading-5 md:leading-6"}`}
+                        >
+                          {e[item.descKey]}
+                        </p>
                       </article>
                     ))}
                   </div>

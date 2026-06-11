@@ -1,10 +1,12 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
 import Reveal from "@/components/ui/Reveal";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ComponentType } from "react";
 import LinkedInIcon from "@/components/ui/LinkedInIcon";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { LINKEDIN_URL, EMAIL } from "@/lib/config";
 import type { Messages } from "@/lib/i18n";
 
@@ -40,33 +42,49 @@ const CONTACT_ITEMS = [
 export default function Contact() {
   const { t } = useLang();
   const c = t.contact;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section
+        id="contact"
+        className="bg-white px-6 py-14 md:py-20 min-h-[350px]"
+      />
+    );
+  }
 
   return (
-    <section id="contact" className="bg-white px-6 py-14 md:py-24">
+    <section id="contact" className="bg-white px-6 py-14 md:py-20">
       <div className="section-shell">
-        <div className="border-t border-stone-200 pt-8 md:pt-10">
-          <Reveal duration={0.5} className="mb-8 grid grid-cols-1 gap-5 lg:grid-cols-[0.64fr_0.36fr] lg:gap-10">
-            <div>
-              <h2 className="text-3xl font-semibold tracking-[-0.045em] text-slate-950 sm:text-[2.7rem] md:leading-[1.04]">
-                {c.title}
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-slate-600">{c.desc}</p>
-            </div>
+        <Reveal duration={0.5} className="grid grid-cols-1 gap-5 md:gap-6 lg:grid-cols-[0.64fr_0.36fr] lg:items-start lg:gap-10">
+          <div>
+            <SectionHeader
+              title={c.title}
+              description={c.desc}
+              className="mb-0"
+              descriptionClassName="mt-4 max-w-xl text-base leading-7 text-slate-600"
+            />
+          </div>
 
-            <div className="flex items-start lg:justify-end">
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-xs font-bold tracking-[0.08em] text-slate-600">
-                <span className="block h-2 w-2 rounded-full bg-[var(--color-signal)]" />
-                {c.avail_reply}
-              </div>
+          <div className="flex items-start lg:justify-end lg:pt-0.5">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-xs font-bold tracking-[0.08em] text-slate-600">
+              <span className="block h-2 w-2 rounded-full bg-[var(--color-signal)]" />
+              {c.avail_reply}
             </div>
-          </Reveal>
+          </div>
+        </Reveal>
 
-          <div className="grid grid-cols-1 gap-0 border-t border-stone-200">
+        <div className="border-t border-stone-200 pt-6 md:pt-7">
+          <div className="grid grid-cols-1 gap-0">
             {CONTACT_ITEMS.map((item, i) => {
               const label = c[item.labelKey];
               const sub = c[item.subKey];
               const content = (
-                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 py-4">
+                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 py-3.5 md:py-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 bg-stone-50 text-slate-700">
                     <item.Icon size={16} />
                   </div>

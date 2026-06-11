@@ -11,6 +11,11 @@ export default function Navbar() {
   const { locale, t, setLocale } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -27,6 +32,14 @@ export default function Navbar() {
     { id: "contact", label: t.nav.contact },
   ];
 
+  if (!mounted) {
+    return (
+      <header
+        className="fixed top-0 inset-x-0 z-50 h-16 border-b border-transparent bg-[rgba(247,244,238,0.82)] backdrop-blur-md"
+      />
+    );
+  }
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 h-16 transition-all duration-300 ${
@@ -38,7 +51,7 @@ export default function Navbar() {
       <div className="section-shell flex h-full items-center justify-between px-6">
         <Link
           href="/"
-          className="shrink-0 whitespace-nowrap text-[1.02rem] font-semibold tracking-[-0.04em] text-slate-950 transition-colors hover:text-[var(--color-accent)]"
+          className="shrink-0 whitespace-nowrap text-[1rem] font-semibold tracking-[-0.02em] text-slate-950 transition-colors hover:text-[var(--color-accent)]"
           aria-label={t.ui.home_aria_label}
         >
           {t.hero.name}
@@ -49,7 +62,7 @@ export default function Navbar() {
             <a
               key={link.id}
               href={`#${link.id}`}
-              className="whitespace-nowrap text-[0.92rem] font-medium text-slate-500 transition-colors duration-200 hover:text-slate-900"
+              className="whitespace-nowrap text-[0.9rem] font-medium tracking-[0.01em] text-slate-500 transition-colors duration-200 hover:text-slate-900"
             >
               {link.label}
             </a>

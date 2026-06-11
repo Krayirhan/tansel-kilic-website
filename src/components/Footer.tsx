@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Mail } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import LinkedInIcon from "@/components/ui/LinkedInIcon";
@@ -8,15 +9,26 @@ import { LINKEDIN_URL, EMAIL } from "@/lib/config";
 
 export default function Footer() {
   const { t } = useLang();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <footer className="border-t border-stone-200 bg-[var(--color-paper)] px-6 py-5 min-h-[80px]" />
+    );
+  }
 
   return (
     <footer className="border-t border-stone-200 bg-[var(--color-paper)] px-6 py-5 text-slate-900">
       <div className="section-shell flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div className="text-left">
-          <div className="text-sm font-semibold tracking-[-0.04em] text-slate-900">
+          <div className="text-[0.96rem] font-semibold tracking-[-0.02em] text-slate-900">
             {t.hero.name}
           </div>
-          <div className="mt-1 text-[11px] uppercase tracking-[0.1em] text-slate-500">{t.footer}</div>
+          <div className="mt-1 text-[10px] uppercase tracking-[0.08em] text-slate-500">{t.footer}</div>
         </div>
 
         <div className="flex items-center gap-2">

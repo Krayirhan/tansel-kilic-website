@@ -4,6 +4,10 @@ Bu dosya `sprints/_rules.md` — CLAUDE.md'nin otomatik okuduğu yol. Değiştir
 
 ---
 
+## Genel Prensipler
+
+- **Tasarım dili kesinlikle korunacak:** Mevcut "white minimalist executive theme" (beyaz minimalist yönetici teması), tasarım tokenları, yazı tipleri (IBM Plex Sans, Newsreader) ve yerleşim yapısı hiçbir koşulda bozulamaz, keyfi değişiklikler yapılamaz.
+
 ## Klasör yapısı
 
 ```
@@ -50,7 +54,7 @@ Proje puanlama sonucundan çıkan öncelik sırası (güncelle sprint bittikçe)
 ### Numaralandırma
 - Sprint numaraları `sprint-01`, `sprint-02` şeklinde iki haneli, sıfır dolgulu olur.
 - Numara atlanamaz, geri alınamaz.
-- Arşiv şu an sprint-07'de. Bir sonraki: **sprint-08**.
+- Arşiv şu an sprint-14'da. Bir sonraki aktif sprint: **sprint-15**.
 
 ### Açılış
 1. `sprints/TEMPLATE.md` kopyalanır → `sprints/active/sprint-XX.md`

@@ -342,6 +342,7 @@ OG image — add `opengraph-image.png` to `src/app/` (Next.js picks it up automa
 
 ## Hard Rules
 
+- Tasarım dili kesinlikle korunacak ( established white minimalist executive style, design tokens, and spacing parameters must be strictly preserved; no arbitrary theme, layout, or font deviations).
 - Never invent personal facts, metrics, or dates
 - Never add analytics without approval
 - Never scrape LinkedIn

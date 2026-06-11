@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -34,15 +35,28 @@ const EDUCATION_ITEMS = [
 export default function Education() {
   const { t } = useLang();
   const e = t.education;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section
+        id="education"
+        className="bg-[var(--color-paper)] px-6 py-14 md:py-20 min-h-[300px]"
+      />
+    );
+  }
 
   return (
-    <section id="education" className="bg-[var(--color-paper)] px-6 py-14 md:py-22">
+    <section id="education" className="bg-[var(--color-paper)] px-6 py-14 md:py-20">
       <div className="section-shell">
-        <Reveal duration={0.5} className="mb-10">
+        <Reveal duration={0.5}>
           <SectionHeader
             title={e.title}
             description={e.subtitle}
-            className="mb-0"
             descriptionClassName="mt-4 max-w-2xl text-base leading-relaxed text-slate-500"
           />
         </Reveal>
