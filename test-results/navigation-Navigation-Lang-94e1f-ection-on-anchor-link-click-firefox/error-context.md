@@ -6,8 +6,8 @@
 
 # Test info
 
-- Name: navigation.spec.ts >> Navigation & Language Toggles >> switches language to English and updates content
-- Location: tests\e2e\navigation.spec.ts:19:7
+- Name: navigation.spec.ts >> Navigation & Language Toggles >> scrolls smoothly to section on anchor link click
+- Location: tests\e2e\navigation.spec.ts:35:7
 
 # Error details
 

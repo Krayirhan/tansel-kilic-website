@@ -22,6 +22,7 @@ export default function Experience() {
     return (
       <section
         id="experience"
+        aria-label="Experience"
         className="bg-white px-6 py-14 md:py-20 min-h-[600px]"
       />
     );

@@ -43,6 +43,7 @@ export default function ResponsibleAI() {
     return (
       <section
         id="responsible-ai"
+        aria-label="Responsible AI"
         className="bg-white px-6 py-14 md:py-20 min-h-[450px]"
       />
     );

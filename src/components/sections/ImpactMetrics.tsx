@@ -31,6 +31,7 @@ export default function ImpactMetrics() {
     return (
       <section
         id="impact"
+        aria-label="Impact Metrics"
         className="bg-white px-6 py-6 md:py-7 min-h-[80px]"
       />
     );

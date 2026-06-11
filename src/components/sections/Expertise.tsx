@@ -49,6 +49,7 @@ export default function Expertise() {
     return (
       <section
         id="expertise"
+        aria-label="Expertise"
         className="bg-[var(--color-paper)] px-6 py-14 md:py-20 min-h-[500px]"
       />
     );

@@ -6,8 +6,8 @@
 
 # Test info
 
-- Name: navigation.spec.ts >> Navigation & Language Toggles >> switches language to English and updates content
-- Location: tests\e2e\navigation.spec.ts:19:7
+- Name: navigation.spec.ts >> Navigation & Language Toggles >> interacts with mobile menu drawer on smaller screens
+- Location: tests\e2e\navigation.spec.ts:57:7
 
 # Error details
 

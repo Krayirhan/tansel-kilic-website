@@ -45,6 +45,7 @@ export default function Education() {
     return (
       <section
         id="education"
+        aria-label="Education"
         className="bg-[var(--color-paper)] px-6 py-14 md:py-20 min-h-[300px]"
       />
     );

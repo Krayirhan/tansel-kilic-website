@@ -52,6 +52,7 @@ export default function Contact() {
     return (
       <section
         id="contact"
+        aria-label="Contact"
         className="bg-white px-6 py-14 md:py-20 min-h-[350px]"
       />
     );

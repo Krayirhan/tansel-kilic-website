@@ -43,6 +43,7 @@ export default function Hero() {
     return (
       <section
         id="hero"
+        aria-label="Hero"
         className="executive-shell relative overflow-hidden px-6 pb-12 pt-24 md:pb-16 md:pt-30 min-h-[450px]"
       />
     );

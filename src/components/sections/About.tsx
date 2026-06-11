@@ -20,6 +20,7 @@ export default function About() {
     return (
       <section
         id="about"
+        aria-label="About"
         className="bg-[var(--color-paper)] px-6 py-14 md:py-20 min-h-[400px]"
       />
     );

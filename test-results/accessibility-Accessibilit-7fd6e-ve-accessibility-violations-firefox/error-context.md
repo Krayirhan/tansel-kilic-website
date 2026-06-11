@@ -6,8 +6,8 @@
 
 # Test info
 
-- Name: accessibility.spec.ts >> Accessibility Audits >> homepage should not have any automatically detectable WCAG AA violations
-- Location: tests\e2e\accessibility.spec.ts:5:7
+- Name: accessibility.spec.ts >> Accessibility Audits >> homepage in English should not have accessibility violations
+- Location: tests\e2e\accessibility.spec.ts:16:7
 
 # Error details
 
@@ -22,6 +22,23 @@ Call log:
 
 ```
 
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]
+  - main [ref=e3]:
+    - region "Hero" [ref=e4]
+    - region "Impact Metrics" [ref=e5]
+    - region "About" [ref=e6]
+    - region "Experience" [ref=e7]
+    - region "Expertise" [ref=e8]
+    - region "Responsible AI" [ref=e9]
+    - region "Education" [ref=e10]
+    - region "Contact" [ref=e11]
+  - contentinfo [ref=e12]
+```
+
 # Test source
 
 ```ts
@@ -30,8 +47,7 @@ Call log:
   3  | 
   4  | test.describe("Accessibility Audits", () => {
   5  |   test("homepage should not have any automatically detectable WCAG AA violations", async ({ page }) => {
-> 6  |     await page.goto("/");
-     |                ^ Error: page.goto: Test timeout of 30000ms exceeded.
+  6  |     await page.goto("/");
   7  |     await page.waitForTimeout(500);
   8  | 
   9  |     const accessibilityScanResults = await new AxeBuilder({ page })
@@ -42,7 +58,8 @@ Call log:
   14 |   });
   15 | 
   16 |   test("homepage in English should not have accessibility violations", async ({ page }) => {
-  17 |     await page.goto("/");
+> 17 |     await page.goto("/");
+     |                ^ Error: page.goto: Test timeout of 30000ms exceeded.
   18 |     const btnEn = page.locator('button[aria-label="Dili İngilizce yap"], button[aria-label="Switch language to English"]');
   19 |     await btnEn.click();
   20 |     await page.waitForTimeout(500);
